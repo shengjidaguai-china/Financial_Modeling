@@ -458,7 +458,7 @@ class _StubPredictor:
 # 7. 持仓池 / 真实行情源 / 质量门控（Q2-4）
 # ----------------------------------------------------------------------
 class TestHoldingsPoolAndQuality:
-    def test_pro_config_holdings_pool_is_28_system_pool(self):
+    def test_pro_config_holdings_pool_is_builtin_pool(self):
         with open(PROJECT_ROOT / "configs" / "config_pro.yaml", "r", encoding="utf-8") as f:
             pro = yaml.safe_load(f)
         symbols = pro["data"]["markets"]["stock"]["symbols"]
