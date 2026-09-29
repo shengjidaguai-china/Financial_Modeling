@@ -18,12 +18,12 @@ data:
   raw_dir: "data/raw"
   processed_dir: "data/processed"
 
-  # 多市场标的（对齐 28 终极量化交易系统持仓池，2026-09-09 实测口径 26 只）
+  # 多市场标的（内建标的池 26 只 A股/ETF，2026-09-09 实测口径）
   markets:
     stock:
       enabled: true
       symbols:
-        # === 28 持仓池 — 个股（12只） ===
+        # === 内建标的池 — 个股（12 只） ===
         - "688041.SH"   # 海光信息（国产算力芯片）
         - "300308.SZ"   # 中际旭创（光模块）
         - "002371.SZ"   # 北方华创（半导体设备）
@@ -36,7 +36,7 @@ data:
         - "601088.SH"   # 中国神华（煤炭）
         - "600276.SH"   # 恒瑞医药（创新药）
         - "600900.SH"   # 长江电力（水电）
-        # === 28 持仓池 — ETF（14只） ===
+        # === 内建标的池 — ETF（14 只） ===
         - "588080.SH"   # 科创50ETF
         - "512880.SH"   # 证券ETF
         - "510050.SH"   # 上证50ETF
@@ -288,7 +288,7 @@ notification:
   smtp_host: ""            # 如 smtp.gmail.com
   smtp_port: 465
   smtp_user: ""
-  smtp_password: ""
+  # 邮件授权码：部署时在本机配置中补充，勿写入版本库
   email_from: ""
   email_to: []             # ["recipient@example.com"]
 
