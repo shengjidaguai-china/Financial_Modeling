@@ -152,7 +152,7 @@ class TestInferenceCalibrator:
         assert "main.py calibration" in out["calibration_reason"]
 
     def test_existing_fields_untouched(self, tmp_path):
-        """向后兼容：既有字段逐字段不变（28 侧可渐进消费）。"""
+        """向后兼容：既有字段逐字段不变（下游可渐进消费）。"""
         (tmp_path / "probability_calibration_short_term.json").write_text(
             json.dumps({"method": "platt",
                         "params": {"coef": 2.0, "intercept": -0.5}}), encoding="utf-8")

@@ -1,4 +1,4 @@
-# 决策源契约与有效性边界（16_ → tradingview / 28）
+# 决策源契约与有效性边界（只读决策源 → 下游消费者）
 
 **当前真相**：16_ 对下游的交付物是 `contract_version = decision-feed/1` 的**只读决策源契约**
 （`GET /api/v1/decision/feed`、`python main.py decision-feed`）。
@@ -81,7 +81,7 @@
 ## 五、下游接入方式
 
 ```bash
-# 服务态（推荐：与 28 现有的 :8800 链路同源）
+# 服务态（推荐：与本地 :8800 链路同源）
 curl "http://127.0.0.1:8800/api/v1/decision/feed?symbols=300308.SZ,510300.SH"
 
 # 离线管道态（tradingview scripts/ 逐行读标的清单的用法）——离线/服务态**逐字段一致**

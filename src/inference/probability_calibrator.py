@@ -5,7 +5,7 @@
     由 ``python main.py calibration`` 生成；推理期只**读**，不重训；
   - 缺文件 = **不校准**（返回原概率并标注 ``applied=false``），绝不猜系数；
   - 只**新增字段**：``calibrated_probability`` / ``uncertainty``，
-    原有 ``probability`` / ``confidence`` 逐字段不变（28 侧可渐进消费）；
+    原有 ``probability`` / ``confidence`` 逐字段不变（下游可渐进消费）；
   - 不确定性口径：``uncertainty = 1 - |2p_cal - 1|``（校准后概率距 0.5 的距离），
     区间宽度的语义与 ``confidence_curve`` 的 ``confidence_from_interval`` 一致。
 

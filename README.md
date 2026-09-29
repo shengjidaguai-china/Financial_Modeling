@@ -1,20 +1,20 @@
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!--                              README.md                                  -->
-<!--                   Financial Modeling · 金融建模                        -->
+<!--              TrendCast Pro · A 股多周期预测与只读信号源                  -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 <div align="center">
 
-# 💹 Financial Modeling
+# 📈 TrendCast Pro
 
-### 金融建模 · 量化研究工程仓库
+### A 股多周期方向预测 · 只读观测信号源
 
 <p>
-  <b>TrendCast Pro</b> — 基于 LightGBM 梯度提升树的智能金融预测引擎<br/>
-  <sub>多周期方向预测 · 真实行情数据链路 · 命中率审计 · 只读信号源集成</sub>
+  <b>基于 LightGBM 的 5 / 10 / 20 日涨跌方向概率模型</b><br/>
+  <sub>真实行情数据链路 · 无前视评估 · 门禁与风控建议 · 决策源契约 · 可离线复算</sub>
 </p>
 
-<sub>研究与工程实践用途 · 非商业许可 · 不构成投资建议 · 信号仅作观测参考</sub>
+<sub>研究与工程实践用途 · 非商业许可 · <b>不构成投资建议</b> · 信号仅作观测参考</sub>
 
 </div>
 
@@ -23,144 +23,107 @@
 <div align="center">
 
 <!-- ── 项目与状态 ── -->
-<a href="./LICENSE"><img src="https://img.shields.io/badge/许可证-禁止商用-critical?style=flat-square&logo=creativecommons&logoColor=white" alt="License"></a>
-<img src="https://img.shields.io/badge/状态-研究阶段%20·%20只读信号源-d29922?style=flat-square" alt="Status">
-<img src="https://img.shields.io/badge/信号-不作交易依据-8b949e?style=flat-square" alt="Signal">
-<img src="https://img.shields.io/badge/防目标泄漏-已修复-58a6ff?style=flat-square" alt="Leak fix">
+<a href="./LICENSE"><img src="https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-%E7%A6%81%E6%AD%A2%E5%95%86%E7%94%A8-critical?style=flat-square&logo=creativecommons&logoColor=white" alt="License"></a>
+<img src="https://img.shields.io/badge/%E7%89%88%E6%9C%AC-v2.0.0%20professional-1f6feb?style=flat-square" alt="Version">
+<img src="https://img.shields.io/badge/%E7%8A%B6%E6%80%81-%E7%A0%94%E7%A9%B6%E9%98%B6%E6%AE%B5-d29922?style=flat-square" alt="Status">
+<img src="https://img.shields.io/badge/%E4%BF%A1%E5%8F%B7-%E5%8F%AA%E8%AF%BB%E8%A7%82%E6%B5%8B%20%C2%B7%20%E4%B8%8D%E4%BD%9C%E4%BA%A4%E6%98%93%E4%BE%9D%E6%8D%AE-8b949e?style=flat-square" alt="Signal">
 
 <br/>
 
 <!-- ── 技术栈 ── -->
-<img src="https://img.shields.io/badge/Python-≥3.8-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
-<img src="https://img.shields.io/badge/LightGBM-梯度提升树-025E8C?style=flat-square" alt="LightGBM">
+<img src="https://img.shields.io/badge/Python-%E2%89%A53.8-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+<img src="https://img.shields.io/badge/LightGBM-%E4%B8%BB%E5%8A%9B%E6%A8%A1%E5%9E%8B-025E8C?style=flat-square" alt="LightGBM">
 <img src="https://img.shields.io/badge/scikit--learn-ML-F7931E?style=flat-square&logo=scikitlearn&logoColor=white" alt="sklearn">
-<img src="https://img.shields.io/badge/pandas-数据-150458?style=flat-square&logo=pandas&logoColor=white" alt="pandas">
-<img src="https://img.shields.io/badge/NumPy-计算-013243?style=flat-square&logo=numpy&logoColor=white" alt="numpy">
-<img src="https://img.shields.io/badge/FastAPI-:8800-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI">
-<img src="https://img.shields.io/badge/ONNX-导出-005CED?style=flat-square&logo=onnx&logoColor=white" alt="ONNX">
-<img src="https://img.shields.io/badge/qlib-Alpha158%20对齐-F7931E?style=flat-square" alt="Alpha158">
-<img src="https://img.shields.io/badge/optuna-超参搜索-9e6a03?style=flat-square" alt="optuna">
+<img src="https://img.shields.io/badge/pandas-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86-150458?style=flat-square&logo=pandas&logoColor=white" alt="pandas">
+<img src="https://img.shields.io/badge/NumPy-%E8%AE%A1%E7%AE%97-013243?style=flat-square&logo=numpy&logoColor=white" alt="numpy">
+<img src="https://img.shields.io/badge/FastAPI-%3A8800-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI">
+<img src="https://img.shields.io/badge/ONNX-%E5%AF%BC%E5%87%BA-005CED?style=flat-square&logo=onnx&logoColor=white" alt="ONNX">
 
 <br/>
 
-<!-- ── 数据源与执行 ── -->
-<img src="https://img.shields.io/badge/数据源-Wind%20MCP%20(P0)-9e6a03?style=flat-square" alt="Wind">
-<img src="https://img.shields.io/badge/数据源-akshare%20(P1)-3fb950?style=flat-square" alt="akshare">
-<img src="https://img.shields.io/badge/数据源-腾讯财经%20(P1)-3fb950?style=flat-square" alt="Tencent">
-<img src="https://img.shields.io/badge/兜底-模拟数据%20(P6)-8b949e?style=flat-square" alt="Simulation">
-<img src="https://img.shields.io/badge/CLI-60%20命令-8250df?style=flat-square&logo=gnubash&logoColor=white" alt="CLI">
-<img src="https://img.shields.io/badge/覆盖-全池%2038%20标的%20%2F%20可复算%2026-58a6ff?style=flat-square" alt="Universe">
+<!-- ── 数据源与能力 ── -->
+<img src="https://img.shields.io/badge/%E6%95%B0%E6%8D%AE%E6%BA%90-Wind%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89-9e6a03?style=flat-square" alt="Wind">
+<img src="https://img.shields.io/badge/%E6%95%B0%E6%8D%AE%E6%BA%90-akshare-3fb950?style=flat-square" alt="akshare">
+<img src="https://img.shields.io/badge/%E6%95%B0%E6%8D%AE%E6%BA%90-%E8%85%BE%E8%AE%AF%E8%B4%A2%E7%BB%8F-3fb950?style=flat-square" alt="Tencent">
+<img src="https://img.shields.io/badge/%E5%85%9C%E5%BA%95-%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E4%B8%8D%E8%90%BD%E7%9B%98-8b949e?style=flat-square" alt="Simulation">
+<img src="https://img.shields.io/badge/CLI-63%20%E5%91%BD%E4%BB%A4-8250df?style=flat-square&logo=gnubash&logoColor=white" alt="CLI">
+<img src="https://img.shields.io/badge/%E6%B5%8B%E8%AF%95-78%20%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6-3fb950?style=flat-square&logo=pytest&logoColor=white" alt="Tests">
+
+<br/>
+
+<!-- ── 可信度（如实标注） ── -->
+<img src="https://img.shields.io/badge/AUC-0.52~0.57-d29922?style=flat-square" alt="AUC">
+<img src="https://img.shields.io/badge/%E5%87%80%E8%B6%85%E9%A2%9D-%E6%97%A0%20edge-d29922?style=flat-square" alt="No edge">
+<img src="https://img.shields.io/badge/%E9%98%B2%E7%9B%AE%E6%A0%87%E6%B3%84%E6%BC%8F-%E5%B7%B2%E4%BF%AE%E5%A4%8D-58a6ff?style=flat-square" alt="Leak fix">
+<img src="https://img.shields.io/badge/%E6%9C%AC%E5%9C%B0%E5%A4%8D%E7%AE%97-%E5%86%BB%E7%BB%93%E5%BF%AB%E7%85%A7%E5%B0%B1%E7%BB%AA-3fb950?style=flat-square" alt="Reproducible">
 
 </div>
 
 ---
 
-## 📑 目录
+## ⚡ 30 秒上手
 
-| | |
-|---|---|
-| [🚀 项目速览](#-项目速览) | [🧩 架构总览](#-架构总览) |
-| [📊 模型评估](#-模型评估) | [⚡ 快速开始](#-快速开始) |
-| [🖥️ 控制台与接口](#️-控制台与接口) | [📦 仓库内容](#-仓库内容) |
-| [🔗 与主系统集成](#-与主系统集成) | [🔒 许可证与免责声明](#-许可证与免责声明) |
+> 完整跑通只需三步。**不需要任何 API Key** —— 默认走免费数据源；有 Wind 终端时才用得上 Key。
 
----
+```bash
+# 0 · 获取代码
+git clone https://cnb.cool/yuppiez328/Financial_Modeling.git
+cd Financial_Modeling
 
-## 🚀 项目速览
+# 1 · 装依赖（核心四件套：akshare / pandas / numpy / pyarrow，无需任何 Key）
+python -m venv .venv
+.venv\Scripts\activate           # Linux / macOS: source .venv/bin/activate
+pip install -r requirements.txt
+pip install lightgbm             # 训练/评估必需（可选依赖，见下）
 
-**TrendCast Pro** 是一款面向金融市场的智能预测引擎，通过 LightGBM 梯度提升树对 **A股股票 / ETF / 期货 / 外汇** 的未来走势进行多周期方向性二分类预测（看涨 / 看跌），现已完整集成至主量化策略系统的每日工作流。
+# 2 · 训练（采集 → 特征 → 训练 → 评估，自动完成）
+python main.py train             # 首次约 2~6 分钟（采集占大头，需联网；本机实测 2 分 34 秒）
 
-<table>
-<tr>
-<td width="50%" valign="top">
-
-**🎯 核心能力**
-
-- **市场覆盖** — 全池配置 38 只（26 只主系统持仓 12 个股 + 14 ETF，另含期货 10 + 外汇 2）；
-  期货/外汇 12 只常因数据源不可达缺席，**实际可复算 26 只**
-- **多周期预测** — 短期 5 日 · 中期 10 日 · 长期 20 日
-- **模型架构** — LightGBM 主力，TimesFM / Kronos 可选实验路径
-- **特征工程** — MA / RSI / MACD / 布林带 · 量价 · 波动率
-- **双维评估** — ML 指标（Accuracy / AUC / F1）+ 金融指标（胜率 / 夏普 / 盈亏比）
-- **标签与因子** — 三重障碍法标签 A/B（S12/G2）· qlib Alpha158 对齐（S13/G3）
-
-</td>
-<td width="50%" valign="top">
-
-**🛡️ 工程纪律**
-
-- **数据源降级链** — Wind MCP → 腾讯财经 → 模拟兜底，逐级优雅降级
-- **防目标泄漏** — `get_feature_columns` 强制排除 `target_*` 列
-- **数据卫生** — 模拟兜底数据**绝不落盘**，不污染真实历史
-- **每日自动刷新** — 推理缓存过期经真实源刷新一次（fail-open）
-- **只读信号源** — 只出方向与概率，决策权归主系统
-- **试验登记** — `trials` append-only，研究者自由度透明化（S13）
-- **发布态检查** — `release-check` 收敛阻塞项与告警路由（S14）
-- **调参与门槛** — optuna 超参搜索 + 置信度阈值曲线（S15/G5）；真实池 60-trials 收敛复跑 + 独立保留期阈值复验已完成；**T15.3 双指标门禁结构重构已交付**（`python main.py confidence-gate`，决策单 `reports/confidence_gate_decision.json`，`affects_gate=false`，**是否切换门禁结构待人工签字**）
-- **保形预测覆盖率校准** — `python main.py conformal`（S16/H1）：分割保形给出带覆盖率保证的区间，覆盖率在更晚的复验段读数；多时段滚动保留期复验**未能复现** T15.3 的单时段结论，如实入库
-- **保形预测区间** — `python main.py conformal-interval`（S16/T16.1+T16.2）：MAPIE split conformal（LAC）在现行 LightGBM 上产**带覆盖率保证**的预测区间 → 置信分（复用 `confidence_from_interval`，与 `|p−0.5|×2` **同数据同折对照**）；覆盖率审计（目标 vs 实测 + bootstrap 95% CI）、可靠性曲线（Brier/ECE，含 isotonic 参考臂）、区间宽度校准，落 `reports/calibration/`；`affects_gate=false`，区间口径缺省不进生产链路，口径取舍属 T16.4 人工检查点
-- **过拟合审计** — `python main.py overfit-audit`（S17/H2，T17.1~T17.3）：CPCV 组合式净化交叉验证（N 组取 k 组作测试 → C(N,k) 条路径，purge/embargo 对齐 leakage_checklist）+ DSR 风格选择偏差收缩指标（方法名如实标注 `cpcv_shrinkage`，不冒充精确解）+ PBO + **统一试验预算**（跨命令累计「已扫描 N 次」，asof 无前视口径）+ S11~S15 历史读数 Bonferroni 回算（只读不改写既有报告）；落 `reports/overfit_audit.json` 与 `reports/cpcv_evaluation.json`；`affects_gate=false`，是否引入过拟合概率下限属 T17.4 人工检查点，详见 `00_kickoff/s17_overfit_audit_conclusion.md`
-- **保留期证据链** — `python main.py confidence-holdout`（S16/T16.3）：决策单证据源 `reports/confidence_holdout_verify.json` 首次有可复现生成命令（训练只用前 70%，保留期从未参与训练/扫描/调参）；同时把保留期切成 n 个互不重叠时段做滚动复验（`--no-rolling` 可关），检验 thr∈[0.2,0.3] 命中率优势是否跨时段稳定，stable/unstable/insufficient 三态如实输出（`reports/confidence_rolling_verify.json`，补充证据）；`affects_gate=false`，挑阈值与签字仍属人工检查点
-- **过拟合审计** — CPCV 净化交叉验证 + 统一试验预算 + 历史读数回算（S17/H2）：`python main.py overfit-audit`
-- **市场状态分层** — `python main.py regime`（S18/H3，T18.1~T18.3）：HMM（GaussianHMM，固定 3 态 → `bull/range/bear`）识别市场状态，`expanding` 口径**第 t 天只用 [0,t] 观测重训**（严格无前视；`full_sample` 全样本口径仅作对照并明确标注 `lookahead_prefixed=true`）；状态内分层评估（逐状态 IC/命中率/样本数 + 分得开判定）与状态 one-hot **单变量**增量 A/B（保守四态，一升一降一律 mixed）；落 `reports/regime/`，`affects_gate=false`，状态缺省**不进**生产链路，`hmmlearn` 未安装时明确报错不降级，是否进门禁/风控属 T18.4 人工检查点；实测**熊市命中率 62.55% vs 震荡市 48.72%（差 13.83pp）**
-- **概率校准层** — isotonic / Platt 校准 + API 追加 `calibrated_probability` / `uncertainty`（S19/H4）：`python main.py calibration`；三周期实测 **ECE 5d 0.1042→0.0025 / 10d 0.1258→0.0463 / 20d 0.0710→0.0530（platt）**，当前按 `probability_calibration.enabled=false` 保持只读，**是否进主推理链路属 T19.4 人工检查点**（与 T15.3 / T18.4 耦合，建议一起签）
-- **投研辅助只读接入** — LLM 投研结论只挂报告层，**结构性不进信号路径**（S20/H5）：`python main.py research-assist`；评估结论为无候选满足准入，**默认取消**
-- **组合回测闭环** — 池级回测器 + 成本三档 + IC/命中率 vs PnL 口径一致性对照（S21/I1）；等权 / 1-ATR / 置信度三臂对照（S22/I2）：`python main.py portfolio-backtest`（`--weights all`）
-- **漂移监控** — evidently 准入评估（**不引入**，需 Python ≥ 3.10）+ PSI/KS 方法论自研，零新依赖（S23/I3）：`python main.py drift-monitor`；实测收益分布在参考窗/当前窗**显著漂移**（PSI 0.26~0.73）
-- **TreeSHAP 状态×特征归因** — lightgbm 原生 `pred_contrib`，零新依赖（S24/I4）：`python main.py feature-attribution`；非 LightGBM 模型 **fail-close 拒绝产出假归因**
-- **组合级过拟合审计** — PSR / DSR / PBO / MinTRL 方法论自研（S25/I5，零新依赖）：实测 **PBO 0.011**（无「选假冠军」迹象），但 **DSR 0.08~0.24**、MinTRL 2173~8382 天 ≫ 现有 1569 天 ⇒ 现有样本不足以把 Sharpe > 0 当真
-- **特征契约修复** — 训练端 `feature_cols` 持久化进 pkl + 推理端按**名称+顺序**对齐，缺列/数量不符 **fail-close 显式报错**；静默截断/填零的错位风险就此关闭
-- **rank 信号回测** — `portfolio-backtest --signals rank`：每日截面 top-30% 做多（绕开未校准阈值），OOS 主动收益 +12.7pp、PSR 0.831，但 **DSR 0.099 `insufficient_evidence`** ⇒ 维持 `report_only`
-
-
-</td>
-</tr>
-</table>
-
-> 📖 **详细说明**（产品介绍、快速开始、命令行接口、配置、模块详解等）请参阅 → [**16_金融市场预测模型/README.md**](16_金融市场预测模型/README.md)
-
----
-
-## 🧩 架构总览
-
-<div align="center">
-  <img src="assets/readme/ui-architecture.png" alt="TrendCast Pro 端到端架构与只读信号源集成" width="880"/>
-</div>
-
-<br/>
-
-**端到端流水线**
-
-```text
-数据采集 ──▶ 特征工程 ──▶ 模型训练 ──▶ 评估 ──▶ 导出 ──▶ 服务 ──▶ 报告
-   │            │             │          │        │        │        │
- Wind       技术指标      LightGBM    双维指标   ONNX   FastAPI   日/周报
- 腾讯      量价波动       集成模型    泄漏检查   运行时  :8800     审计归档
- 模拟      防泄漏门控     TimesFM                            命中率回溯
+# 3 · 预测 / 起服务
+python main.py predict 300308.SZ --horizon all    # 单只 · 全部周期
+python main.py serve                              # REST API → http://localhost:8800
 ```
 
-**数据源优先级链**（逐级降级，永不崩溃）
+**没有模型也能先看看？** 不需要训练即可运行的自检命令：
 
-```text
-Wind MCP (P0)  ──▶  akshare (P1)  ──▶  腾讯财经 (P1)  ──▶  模拟数据 (P6)
-   需 Key          免费 · 覆盖期货/外汇     免费 · 前复权       仅链路验证 · 不落盘
+```bash
+python main.py --help            # 查看全部 63 个子命令
+python main.py trials            # 评估试验登记（append-only）
+python main.py release-check     # 发布态健康检查（读本地报告）
 ```
 
-> akshare 由可选依赖升为 P1（S14/G4），是免费档中**唯一覆盖国内期货与外汇**的通道；未安装时静默跳过，链路与升级前一致。
+> 💡 **可选依赖按需安装**（不装则对应命令**明确报错**，不会静默跳过）：
+> `lightgbm`（训练/评估/调参）· `optuna`（`tune` 超参搜索）· `hmmlearn`（`regime` 状态分层）·
+> `mapie`（`conformal-interval` 保形区间）· `neuralforecast`（概率区间）。
+> 详见 [`requirements.txt`](requirements.txt) 注释块。
+>
+> 💡 **Wind 数据源**：配置环境变量 `WIND_API_KEY` 即启用（机构级 P0 源）；未配置时自动跳过，
+> 依次降级到 akshare / 腾讯财经，**无需任何 Key 即可跑通全链路**。
 
 ---
 
-## 📊 模型评估
+## 📊 模型评估（如实读，包括不好看的部分）
 
-<div align="center">
-  <img src="assets/readme/ui-model-eval.png" alt="TrendCast Pro 模型评估面板" width="880"/>
-</div>
+> **最新本地复跑**（2026-09-29 · 真实行情免费档（akshare / 腾讯财经） · 目标泄漏已修复）
 
-<br/>
+**数据口径**：内建标的池 **38 只**（26 只 A股/ETF + 10 只商品期货主连 + 2 只外汇），
+前复权日K，2020-01-01 起至最新交易日，按时序三段切分（train 70% / val 15% / test 15%），
+测试样本 9041~9126 条。本次运行未配置 `WIND_API_KEY`，Wind 档自动跳过，实际走 **akshare / 腾讯财经免费档**。
 
-**最新训练评估**（2026-09-09 · 腾讯财经真实行情 · 目标泄漏已修复）
+| 模型周期 | 准确率 | AUC | 精确率 | 召回率 | 盈亏比(毛) | 评级 |
+|:---|:---:|:---:|:---:|:---:|:---:|:---|
+| 🟦 短期 5d | 49.19% | 0.5143 | 0.4918 | 0.9978 | 0.9681 | 接近随机 |
+| 🟨 中期 10d | 47.70% | 0.5391 | 0.4770 | 1.0000 | 0.9121 | 低于随机 |
+| 🟪 长期 20d | 46.99% | 0.5435 | 0.4681 | 0.9974 | 0.8863 | 低于随机 |
 
-> 数据口径：主系统持仓池 26 只标的（12 个股 + 14 ETF），腾讯财经前复权日K，2020-01-01 ~ 2026-09-09，按时间三段切分。
+> ⚠️ **必须直说的两点**：
+> 1. **召回率 ≈ 1.0 = 退化解**：三个模型几乎全部预测同一方向，而样本正类占比仅约 0.47~0.49，
+>    因此准确率 ≈ 一直猜多数的得分，**准确率本身不携带信息**；判断区分度请看 AUC。
+> 2. **本轮读数比 2026-09-09 那版更差**（当时 5d/10d/20d 准确率 52.7/53.2/51.3%、AUC 0.5688/0.5689/0.5420）。
+>    差异来自**采集口径不同**（本次 38 只含期货/外汇、无 Wind Key 走免费档、数据截至 2026-09-29），
+>    两组数字**不可直接比较**；两组都如实保留，不做择优展示。
+
+**历史对照**（2026-09-09 · 26 只 A股/ETF · 腾讯财经前复权）
 
 | 模型周期 | 准确率 | AUC | 胜率 | 盈亏比 | 夏普（近似） | 评级 |
 |:---|:---:|:---:|:---:|:---:|:---:|:---|
@@ -168,236 +131,89 @@ Wind MCP (P0)  ──▶  akshare (P1)  ──▶  腾讯财经 (P1)  ──▶ 
 | 🟨 中期 10d | 53.2% | 0.5689 | 53.2% | 1.14 | 0.32 | 弱（略优于随机） |
 | 🟪 长期 20d | 51.3% | 0.5420 | 51.3% | 1.05 | 0.09 | 接近随机 |
 
-> ⚠️ **重要提示**：早期评估（2026-06-27，10d/20d AUC 0.84）存在**目标泄漏**（`target` 列曾混入特征集）与模拟数据口径问题，属虚高值，**不可比**。上表为修复后的真实可信基线。
->
-> 🧭 **结论**：真实行情下三周期区分度均有限（AUC 0.54~0.57），信号仅可作**只读观测参考**，不可单独作为交易依据。
->
-> 🔻 **更硬的结论（Issue #55 九轮排查，2026-09-17 ~ 09-19）**：换用「相对全池等权的**净超额**」记分板后，
-> 现行口径在全池切片上**三周期全部为负或不显著**（5d t −2.12 / 10d t −2.79 / 20d t −2.27）、
-> 状态分层（三分 / 趋势盘整二分）**无正向状态**、消融八子集**无一转正**，随机抽同数量标的即可反超
-> ⇒ **绝对收益为正 ≠ 有 edge**；「另立项目做波动/回撤预警」的退路（`risk-signal`）同样**不成立**。
-> 唯一非全负线索（rank 截面排序 +12.7pp、风险预警 H20 偏 IC 0.121）均**未达证据门槛**，
-> 如实记为待观察、不采信、不立项。详见 [全池基线专题](cairn/full-pool-baseline.md)。
+> ⚠️ 更早的评估（2026-06-27，10d/20d AUC 0.84）存在**目标泄漏**（`target` 列曾混入特征集）
+> 与模拟数据口径问题，属虚高值，**不可比、不可引用**；根因已修复
+> （`get_feature_columns` 强制排除 `target_*` 列）。
 
-**命中率审计** · 78 条预测已到期记录 → 57 条经本地真实行情回溯 → **真实命中率 56.1%**（21 条本地无行情保持未验证，绝不误判）
+### 🔻 更硬的结论：这套信号**没有可用的决策增量**
 
----
+九轮独立排查（2026-09-17 ~ 09-19，详见 [`cairn/`](cairn/) 知识层）用
+「**相对全池等权的净超额**」作唯一记分板，结论一致：
 
-## ⚡ 快速开始
+- **绝对收益为正 ≠ 有 edge**：信号年化看着高于基准，但扣掉 `2×` 单边成本、做非重叠调仓后，
+  **净超额三周期全部为负或不显著**（5d t −2.12 / 10d t −2.79 / 20d t −2.27）。
+  随机抽同样数量标的，**5d 有 7.5% 的概率不亚于信号** ⇒ 选中的这些标的没有信息含量。
+- **状态分层无解**：三分（牛/震荡/熊）与趋势/盘整二分，**无正向状态**（`conditional_edge_hint=False`）——
+  「信号只藏在某种行情里」的假设**不被支持**。
+- **加减特征无解**：八个特征子集**无一**把净超额推正（107 列冗余不是瓶颈）。
+- **风险预警退路也堵死**：朴素 trailing-vol 基线对未来波动 IC 已有 **0.69~0.75**，
+  模型输出的增量仅 **0.03~0.09**（低于效应量下限）⇒ 真要做波动/回撤预警，**用朴素基线即可**。
+- **唯一方向为正的线索未达门槛**：`rank` 截面排序（每日 top-30% 做多）OOS 主动收益 +12.7pp、
+  PSR 0.831，但 **DSR 0.099 仍 `insufficient_evidence`** ⇒ 维持 `report_only`，**不采信为正式证据**。
 
-### 1 · 安装
+> ✅ **定位结论**：本项目的正确用法是「**可审计的信号研究工具 / 只读观测源**」，
+> **不是**「高胜率赚钱机器」。所有信号出口均带 `position_role=observer`、`affects_gate=false`，
+> **不产出仓位、不改门禁**。任何对外材料**不得**宣称高胜率或「即将解锁」。
 
-```bash
-git clone https://cnb.cool/yuppiez328/Financial_Modeling.git
-cd Financial_Modeling
-
-python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-> 要求 Python ≥ 3.8（实际运行环境 3.8.9，代码全链路兼容）。
-> 使用 Wind 数据源需配置 `WIND_API_KEY`；不用 Wind 时自动使用**腾讯财经免费日K（无需 Key）**。
-
-### 2 · 训练
-
-```bash
-python main.py train
-```
-
-自动完成 **采集 → 特征 → 训练 → 评估**，产出 `models/lightgbm_{short,mid,long}_term_*.pkl` 与 `logs/evaluation_report.txt`。
-
-### 3 · 预测
-
-```bash
-python main.py predict 300308.SZ --horizon all            # 单只 · 全部周期
-python main.py batch 600519.SH 000858.SZ --horizon mid_term
-```
-
-### 4 · 启动 API 服务
-
-```bash
-python main.py serve                                       # http://localhost:8800
-```
-
-### 5 · 常用扩展
-
-```bash
-python main.py daily-report     # 每日预测报告
-python main.py weekly-report    # 周度预测报告
-python main.py adaptive         # 自适应学习（性能监控 + 漂移检测）
-python main.py audit            # 预测审计（真实行情回溯命中率）
-python main.py schedule         # 自动重训练调度（常驻）
-```
-
-> 🔌 **决策源契约**（供 tradingview / 28 消费）：
-> `GET /api/v1/decision/feed` 或 `python main.py decision-feed --symbols-file ~/positions.txt --stdout`
-> —— 出口每周期**净看涨概率**（下游不必判断方向字符串）、多周期综合分、校准概率、
-> 置信度采纳建议与已回溯命中率摘要。**只读**：不产出仓位、不改门禁。
-> ⚠️ 实测：置信度↑ ⇒ 命中率↑（54%→98%）但**平均已实现收益↓（+1.92%→−0.78%）**，
-> 高置信 ≠ 可采信，详见 [决策源契约专题](cairn/decision-source-contract.md)。
-> 🔧 **修正**：该"反向"只在**低波动**状态成立；置信度本身**不是** edge 信号
-> （`IC(置信度,收益) ≈ 0 ~ −0.09`），必须与波动状态联读
-> —— 见下方「波动分层与置信度语义」。
-
-> 🎯 **基准相对决策增量**（Issue #55 步骤⑤，本轮裁定）：
-> `python main.py edge-check`（只读，`affects_gate=false`）
-> —— 判据换成**相对全池等权的净超额**（扣 `2×` 单边成本、非重叠调仓、随机子集对照）。
-> 全池等权 buy&hold 年化 **+19.1%**；信号年化 +23.9%~+24.8% 看着更高，但
-> 净超额 **−0.070%(5d) / +0.029%(10d) / +0.225%(20d)**，t = −0.84 / 0.18 / 0.66
-> ⇒ 5d `no_edge`、10d/20d `inconclusive`；随机抽同样数量（16 只）标的，5d 有
-> **7.5%** 的随机次不亚于信号 ⇒ **选中这些标的没有信息含量**。
-> 据此**否掉**两项遗留候选：周期权重重排（五个候选无一带净超额）、
-> 采纳口径调整（信号本身无 edge）。**这是"绝对收益为正 ≠ 有 edge"的直接读数。**
-> 详见 [基准相对增量专题](cairn/benchmark-relative-edge.md)。
-
-> 🪧 **状态分层的净超额**（Issue #55 第七/八轮，"增量是不是只在某个市场状态下"）：
-> `python main.py edge-check`（默认附 `regime_breakdown` 段；`--no-regime-breakdown` 关闭）
-> —— 把前六轮的**全样本平均**读数拆开：信号会不会"大部分时间没用、
-> 只在某种市场状态才有增量"被平均掉。状态由**全池等权市场层**拟合（HMM `expanding`
-> 无前视；缺 hmmlearn / 拟合退化时**如实降级**规则口径并标 `mode=rules_fallback`），
-> 调仓日取**当日**标签（有截断回归守卫证明无前视），逐期净超额与全局判据**逐式同源**。
-> **第八轮把第七轮的 8 标的冒烟升到全池 38 标的**，主读数（真实日K，walk-forward，base 档）：
-> 全局净超额 **−0.224%（t −3.62）** `no_edge`；三分 **range −0.250%（t −3.23）/
-> bear −0.134%（t −1.95）/ bull 期数 0 不外推**；新增**趋势/盘整二分**
-> （bull∪bear→trending、range→choppy，同一批逐期净超额，**展示归并不换口径**）
-> **trending −0.134% / choppy −0.250%**。`conditional_edge_hint=False`。
-> ⇒ "增量只藏在某状态 / 只在趋势里有用"**均不被支持**；样本量上来后
-> "相对等权显著为负"从待观察变**统计确认**。
-> ⚠️ 本轮顺带修掉**两条静默缺陷**（比读数更重要）：① `regime_labels` 从第 1 个有效样本
-> 起就 fit，起步必然连续 `insufficient_fit_samples` 被静默吞掉；加 stalled 护栏后
-> 60 次起步失败**正好触发护栏**，一个**完全可 fit** 的全池序列被误标
-> `stalled=True / refits=0` 并静默降级到规则口径 —— 即**第七轮的 "hmm_expanding"
-> 读数实际是规则口径降级**，全池口径才是 HMM 真读数（`refits=404`）。
-> ② `build_report` 调状态标签**无异常保护**，hmmlearn 缺失抛 `ModuleNotFoundError`
-> ⇒ 整个状态分层被判"计算失败"，连规则口径降级都没走到，而主读数明明可用。
-> 两条已修 + `tests/test_regime_fit_guard.py` 11 条守卫。
-> 详见 [基准相对增量专题](cairn/benchmark-relative-edge.md) 第八/十节。
-
-> 🛡️ **风险预测力检验**（Issue #55 第八轮，"风险预警"这条退路成不成立）：
-> `python main.py risk-signal`（只读，`affects_gate=false`）
-> —— 历轮一致建议「另立项目做波动 / 回撤预警」，本轮**不预设它成立**，把那条建议的
-> **唯一地基**（「置信度 = 波动率探测器」）单独拿出来独立检验。
-> 判据 = **控制朴素 trailing-vol 基线后的偏秩相关增量**（效应量 |IC| ≥ 0.10
-> **且** 重叠校正后 |t| ≥ 2、方向对；t 用 `n_eff ≈ n/h` 防重叠样本撑显著）。
-> 主读数（26 标的真实日K，walk-forward）：朴素 trailing-vol 基线对未来波动
-> IC **0.69~0.75**（波动预测本就"好做"）；模型输出的增量仅 **0.03~0.09**，
-> **三周期全低于效应量下限**，子池稳健性 **2/12 `fragile`** ⇒ 结论 **`no_risk_increment`**。
-> ⇒ **"另立项目做风险预警"的地基也不成立**：真要做波动 / 回撤预警，**用朴素波动基线即可**，
-> 不必为本模型输出立项 —— 不是"没用"，而是**朴素基线已把它能做的做完了**。
-> 详见 [风险预测力专题](cairn/risk-signal-informativeness.md)。
-
-> 🧪 **特征集 × 模型族联合消融**（Issue #55 第六轮，最后一条未量化嫌疑）：
-> `python main.py ablation`（只读，`affects_gate=false`）
-> —— 以**唯一记分板**（相对全池等权的净超额）判两条从未量化的假设。
-> **特征侧**：八个子集（`full`/`no_factor`/`no_macro`/`classic_only`/`compact`/
-> `returns_only` 等）**无一把净超额推正**，最好的也"没那么负"（配对 t ≤ 1.69）
-> ⇒ 107 列冗余**不是**瓶颈，**不做**加/减特征。
-> **模型侧**：仅 **10d** 上 `random_forest`（配对 t 2.58, Holm p 0.039）与
-> `logistic_ridge`（t 3.92, Holm p 0.0004）相对基线族统计上确认**"更不差"**，
-> 但**净超额仍为负、5d/20d 不成立** ⇒ 够格作下一步实验方向
-> （**降复杂度 + 限定 10d**；线性族也能做到 ⇒ 不是"非线性不够"），
-> **不够格**改生产配置。
-> ⚠️ 本轮最强结论：现行口径在**三个周期上全部相对等权显著为负**
-> （5d t = −2.12 / 10d t = −2.79 / 20d t = −2.27）—— 独立判据**第二次**确认
-> 这套信号是"**负增量**"。详见 [消融专题](cairn/feature-model-ablation.md)。
-
-> 🧊 **全池基线读数冻结**（Issue #55 第九轮，本轮裁定）：
-> `python main.py edge-check` / `ablation` / `risk-signal`
-> —— 前八轮各在**不同子集**上读数（8 标的 / 26 标的），本轮把结论钉到**同一条全池切片**，
-> 并把 38 池日K与各命令读数**冻结入库**（`data/raw/*.frozen.*.csv` +
-> `reports/*.frozen.*.json`）⇒ **clone 后离线可复算**，不再依赖采集时刻与网络可达性。
-> 主读数（26 只 A股/ETF，walk-forward，base 档）：基准年化 **+18.44%**（夏普 0.865）、
-> 信号 +24.83%，净超额 **−0.040%（t −0.41，`no_edge`）**，5% 随机子集不亚于信号；
-> H10 `inconclusive` / H20 `no_edge` / conservative 档 −0.140%（t −1.42）。
-> **状态分层（三分 + 趋势/盘整二分）无正向状态**：range/choppy −0.081%（t −0.73）、
-> bull +0.029%（t 0.14）与 trending +0.041%（t 0.21）**为正但不显著** ——
-> **不得**把"负得最少"写成"趋势段有 edge"；bear 期数 5 < 8，**如实不可用、不外推**。
-> **消融复核**：特征七子集**无一转正**（最好 `no_macro` 配对 t +2.38 仍为负）；
-> 模型族 H5 上 `random_forest`（Holm p 0.90）/ `logistic_ridge`（Holm p 0.50）**未复现**
-> 第六轮 10d 的"更不差"线索 ⇒ **"降复杂度 + 限定 10d"这条实验方向在净超额记分板上不成立**。
-> **风险预警复核**：本轮唯一非全负读数（H20 偏 IC 0.121、t 4.82，跨过 0.10 效应量下限），
-> 但子池稳健性 **0/12 `fragile`**、模块自判**不得外推** ⇒ 只作**待观察线索**，不采信、不立项。
-> 边界：期货/外汇共 12 只因数据源不可达缺席（"38 池"实际可复算 26 只 A股/ETF）；
-> 三档持有期锚点互相重叠，**不跨持有期比较绝对值**。
-> 详见 [全池基线专题](cairn/full-pool-baseline.md)。
-
-> 🔬 **模型优化排查**（Issue #55 步骤①②③）：
-> `python main.py pool-collinearity` / `python main.py model-improve`（只读，`affects_gate=false`）
-> —— ① 全池 38 只 → 有效独立维度 **7.9**（ETF 池 14→2.8），但**缩池无效**（去冗余后 IC 反降）；
-> ② 三重障碍法标签**证伪**（三周期全无增量）；③ 现行权重 `0.30/0.35/0.35` 把最高权重
-> 给了**唯一不显著**的 10d，而 5d 是唯一强 IC 且显著的周期（不自动重排，须人工签字）。
-> 顺带修掉 `label_*` 列**静默泄漏进特征集**的真缺陷（曾产出 AUC=1.0 的假读数）。
-> 详见 [模型优化排查专题](cairn/model-optimization-findings.md)。
-
-> 🔬 **波动分层与置信度语义**（Issue #55 步骤④）：
-> `python main.py regime-signal`（只读，`affects_gate=false`）
-> —— 把高置信子集按**事前波动率三分位**分层：高置信 × **高波动** 三周期一致为正
-> （IC +0.23~+0.36、平均已实现收益 +1.5%~+3.8%、命中 0.65~0.67）；
-> 高置信 × **低波动** 收益为负 ⇒ 前一轮的"反向"结论是**口径混淆**。
-> 但随机子池稳健性只到 `suggestive`（7/12），**不够格**直接改下游采纳口径。
-> 同时检验周期权重重排：单周期 IC 排序 ≠ 组合收益排序，**证伪**。
-> 详见 [波动分层专题](cairn/regime-conditioned-signal.md)。
-
-> 🖼️ **TradingView 交付**：`python main.py tv-export` —— 把契约投影成 TradingView **可直接读入**的
-> 图片信号卡（真 PNG，`tEXt` 内嵌机器可读契约 + 全精度锚点）与 Pine 数据层
-> （`tv-pine/1`，`request.seed` 可读）。**像素即契约**：卡片数值与同一份契约逐字段相等。
-> ⚠️ 本轮实测（38 标的池，3420 锚点）：命中 52.9% / 平均收益 +0.32%、置信度普遍贴地、
-> `advisory_consumable` 0/38 —— **交付形态已通，模型本身还没跑出可用区分度**。
-> 详见 [TradingView 交付专题](cairn/tradingview-handoff.md)。
-
-> 🥇 **rank 排序信号基准对照**（唯一方向为正的线索，2026-09-19）：
-> `python main.py portfolio-backtest --signals rank`（只读，`affects_gate=false`）
-> —— 每日截面 top-30% 做多（**绕开未校准的 0.5 阈值**，只消费排序信息 AUC 0.52~0.58），
-> 信号只产生于与训练同款切分的 OOS 窗（238 截面日 / 33 标的）。
-> 实测（base 档）：rank 等权年化 **+0.1877 / 夏普 1.938** vs 同池 hold +0.0604 vs
-> 随机 top-30% **−0.2222** ⇒ 主动收益 **+12.7pp**、PSR 0.831，方向指向**排序信息真实存在**。
-> ⚠️ 但主动收益 **DSR 0.099（N=44）仍 `insufficient_evidence`** ⇒ 按 T25.4 标准
-> **不得引用为正式证据**，维持 `report_only`、**不提请、不代签**；三分段 +0.5%/+13.6%/+4.0%
-> 全正但不均匀。详见 [rank 回测记录](00_kickoff/rank_backtest_full_pool_20260915.md)。
-
-> 🧪 **I 轮组合闭环验证**（S21~S25，Issue #54）：组合回测器（I1）+ 三臂对照（I2）+
-> 漂移监控 PSI/KS 自研（I3）+ TreeSHAP 归因（I4）+ 组合级过拟合审计 PSR/DSR/PBO 自研（I5）。
-> 关键读数：漂移监控显示收益分布在参考窗/当前窗**显著漂移**（PSI 0.26~0.73）；
-> 组合级 **PBO 0.011**（无"选假冠军"迹象）但 **DSR 0.08~0.24**、
-> **MinTRL 2173~8382 天 ≫ 现有 1569 天** ⇒ **现有样本长度不足以把 Sharpe > 0 当真**。
-> 另修掉 `feature_cols` 契约隐患：训练端持久化 + 推理端按**名称+顺序**对齐，
-> 缺列/数量不符 **fail-close 显式报错**，静默截断/填零的错位风险就此关闭。
-
-> 🔌 **Laya 只读决策源接入（J 轮 S26，Issue #66）**：
-> `python main.py laya-decision` / `python main.py laya-replay` / `python main.py laya-prereg`
-> （只读，`affects_gate=false`）
-> —— 方向裁定：**Laya 打底、只留本地 Laya**（Jev 闭源在线臂按用户决策移除，避免网络依赖 /
-> 成本 / 不可复现）。Laya 的 `choice`/`score`/`noul` + **校准置信度**用来补契约层缺失的一环：
-> 一个可离线复现的**只读第二决策源 / 交叉验证臂**；产出全部无
-> `probability`/`direction`/`signal` 字段，`affects_gate`/`affects_signal` **恒 false**。
-> **接入前先过可复现性证明**（T26.6）：对照用的 `data/raw/*.csv` 是**滑动增量缓存**
-> （只留最近 400 行、日期标签整体偏 5~7 个交易日）⇒ 同一模型输出在不同采集日会落在
-> **不同价格序列**上。`laya-replay` 逐行对账「缓存 ↔ 冻结快照」：实测
-> **价格逐行相等 ✅ 3/3、日期标签错位 ❌ 0/3** ⇒ `replayable_with_label_drift`
-> —— 对照**可离线复算**，但口径**必须认冻结快照的日期**。
-> **判据也要先冻结再跑数**（T26.7）：T26.3 的对照原本**没有预先写死的通过/不通过规则**，
-> 等真实权重跑出数字再定「多少算好」= 事后挑规则、不可证伪。`laya-prereg` 把三条门
-> （命中率增量 ≥ 2pp / 两源相关性 ≤ 0.85 / 分档×收益单调）在 T26.1 之前冻结，
-> 规则进 sha256 指纹（改了即识别），**无预注册规则一律不判 pass**（fail-close）。
-> T26.1（~1.7GB 重型依赖 + 许可证准入）/ T26.5（保留决策）仍 `pending`，**NPC 不代签**。
-> 详见 [Laya 只读接入边界](cairn/laya-readonly-admission.md)。
-
-> 📌 完整命令与配置请参见 → [**16_金融市场预测模型/README.md**](16_金融市场预测模型/README.md)
+**命中率审计（历史）** · 2026-09-09 记录：78 条预测到期 → 57 条经本地真实行情回溯 → 真实命中率 **56.1%**。
+> ⚠️ 该次审计的明细（`logs/audit/predictions.jsonl`）现已不在库中（78 条全为 `verified=false`），
+> **当前无法复现**，故仅作历史记录保留；需重新验证请运行 `python main.py audit`（需联网）。
 
 ---
 
-## 🖥️ 控制台与接口
+## 🧩 它长什么样
 
 <div align="center">
-  <img src="assets/readme/ui-console.png" alt="TrendCast Pro 金融预测控制台" width="880"/>
-  <br/>
-  <sub>▲ 组合级预测摘要与 CLI 命令速查（示例渲染视图）</sub>
+
+<table>
+<tr>
+<td width="50%"><img src="assets/readme/ui-data-pipeline.png" alt="真实行情数据链路" width="430"/><br/><sub><b>真实行情数据链路</b> — 前复权日K + 归一化净值对比</sub></td>
+<td width="50%"><img src="assets/readme/ui-model-eval.png" alt="模型评估面板" width="430"/><br/><sub><b>模型评估面板</b> — 三周期六指标 + 波动率分位</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="assets/readme/ui-console.png" alt="预测控制台" width="430"/><br/><sub><b>预测控制台</b> — 组合级摘要 + CLI 速查（<i>示例视图，非实时截图</i>）</sub></td>
+<td width="50%"><img src="assets/readme/ui-architecture.png" alt="端到端架构" width="430"/><br/><sub><b>端到端架构</b> — 五层结构 + 只读信号源出口</sub></td>
+</tr>
+</table>
+
 </div>
 
-<br/>
+```text
+数据采集 ──▶ 特征工程 ──▶ 模型训练 ──▶ 评估 ──▶ 导出 ──▶ 服务 ──▶ 报告
+   │            │             │          │        │        │        │
+ Wind        技术指标      LightGBM    双维指标   ONNX   FastAPI   日/周报
+ akshare    量价波动       集成模型   泄漏检查   运行时  :8800     审计归档
+ 腾讯        防泄漏门控     TimesFM                            命中率回溯
+ 模拟兜底    时间特征                                                │
+                                                             决策源契约出口
+```
 
-**REST API**（FastAPI · 默认端口 8800）
+**数据源优先级链**（逐级降级，永不崩溃；未配置即跳过）
+
+```text
+Wind MCP (P0)  ──▶  akshare (P1)  ──▶  腾讯财经 (P1)  ──▶  模拟数据 (P6)
+   需 WIND_API_KEY     免费 · 覆盖期货/外汇   免费 · 前复权      仅链路验证 · 不落盘
+```
+
+> akshare 是免费档中**唯一覆盖国内期货与外汇**的通道；未安装时静默跳过，链路不受影响。
+> 模拟数据**绝不写入缓存**——不会污染真实历史（数据卫生硬约束）。
+
+### 工程纪律（可核验）
+
+| 纪律 | 实现 | 怎么验 |
+|:---|:---|:---|
+| **防目标泄漏** | `get_feature_columns` 强制排除 `target_*` 列 | `tests/test_label_leak_guard.py` |
+| **特征契约对齐** | 训练端持久化 `feature_cols`，推理端按**名称+顺序**校验，缺列/错位 **fail-close 报错** | `tests/test_predictor_feature_alignment.py` |
+| **模拟数据不落盘** | 兜底数据只用于链路验证，不写缓存 | `src/data/collector.py` |
+| **推理缓存自动刷新** | 缓存过期经真实源刷新一次（fail-open）；**绝不采用模拟数据** | `src/inference/predictor.py` |
+| **门禁 fail-close** | 门禁不可用 / 数据缺失 / 未达标 → 一律**不放行**，信号保持只读 | `src/trading/gate.py` |
+| **无前视评估** | 时序切分 + CPCV 净化交叉验证（purge/embargo） | `python main.py overfit-audit` |
+
+---
+
+## 🖥️ 接口与交付形态
+
+### REST API（FastAPI · 默认端口 8800）
 
 | 方法 | 端点 | 说明 |
 |:---:|:---|:---|
@@ -405,72 +221,237 @@ python main.py schedule         # 自动重训练调度（常驻）
 | `GET` | `/api/v1/models` | 已加载模型清单 |
 | `GET` | `/api/v1/predict/{symbol}` | 单只预测（`?horizon=`） |
 | `POST` | `/api/v1/predict/batch` | 批量预测 |
-| `GET` | **`/api/v1/portfolio/summary`** | **组合级契约端点（主系统每日消费）** |
-| `GET` | **`/api/v1/decision/feed`** | **决策源契约（净方向概率 / 综合分 / 采纳建议 / 审计摘要）** |
-| `GET` | `/api/v1/signal/{symbol}` | 交易信号 |
-| `GET` | `/api/v1/trade/{symbol}` | 交易适配输出 |
-| `GET` | `/api/v1/audit/report` | 审计报告 |
-| `GET` | `/api/v1/audit/stats` | 命中率统计 |
+| `GET` | `/api/v1/portfolio/summary` | 组合级摘要（多周期方向 + 概率） |
+| `GET` | **`/api/v1/decision/feed`** | **决策源契约**：净看涨概率 / 综合分 / 校准概率 / 采纳建议 / 审计摘要 |
+| `GET` | `/api/v1/signal/{symbol}` · `/api/v1/trade/{symbol}` | 交易信号 / 交易适配输出 |
+| `GET` | `/api/v1/audit/report` · `/api/v1/audit/stats` | 审计报告 / 命中率统计 |
 
 ```bash
-# 组合级摘要（主系统 daily_runner 步骤 2.5 每日自动调用）
-curl "http://localhost:8800/api/v1/portfolio/summary?symbols=300308.SZ,601088.SH"
+curl http://localhost:8800/health
+curl "http://localhost:8800/api/v1/predict/300308.SZ?horizon=long_term"
+curl "http://localhost:8800/api/v1/decision/feed?symbols=300308.SZ,510300.SH"
 
-# 契约返回
-# {"generated_at", "model_type", "predictions":[{symbol, sector,
-#   horizons:{h:{direction, probability, model}}}], "meta":{models_loaded, error_symbols}}
+# 离线导出同一份契约（服务态与离线态逐字段一致）
+python main.py decision-feed --stdout
+```
+
+### 决策源契约（`decision-feed/1`）
+
+把「方向字符串 + 概率」的换算**收到生产方一侧**，下游不必自己重复实现（各写一套必然产生口径分歧）：
+
+| 字段 | 含义 | 对下游的价值 |
+|:---|:---|:---|
+| `horizons.<h>.net_up_probability` | 每周期**净看涨概率** | **不必判断方向字符串**，不会被读成相反结论 |
+| `horizons.<h>.calibrated_probability` / `uncertainty` | 概率校准层 | 是否标定一眼可见（缺失时如实 `calibration_applied=false`） |
+| `aggregate.composite_score` / `composite_signed` | 多周期综合分（显式权重） | 权重口径统一；`missing_horizons` / `coverage` 如实披露 |
+| `advisory.advisory_consumable` / `recommended_threshold` | 置信度采纳建议 | 门槛不再由消费方各拍一个数 |
+| `audit` / `analytics` | 已回溯命中率 / 分档×已实现收益 | 是否采信有实证依据 |
+
+**结构性纪律**：`position_role = observer`、`affects_gate = false`、`advisory_only = true`
+—— **只读：不产出仓位、不改门禁**。缺失周期**不补 0.5**，非有限值一律 `None`。
+
+> 📐 端到端的契约与边界说明见 [`cairn/decision-source-contract.md`](cairn/decision-source-contract.md)。
+
+### TradingView 交付（`tv-export`）
+
+把契约投影成 TradingView **可直接读入**的两件套：
+
+| 入口 | 交付物 | 说明 |
+|:---|:---|:---|
+| 图片导入 | `signals/<symbol>.png` | 真 PNG，`tEXt` 块内嵌机器可读契约（全精度锚点） |
+| Pine `request.seed` | `pine/trendcast/<symbol>.json` | 变量 × 时序表，`tv-pine/1` 格式 |
+
+```bash
+python main.py tv-export                             # 全池
+python main.py tv-export --symbols 510300.SH         # 单标的
+python main.py tv-export --no-anchors --card-limit 8 # 只出卡片
+```
+
+> **像素即契约**：卡片上的每个数值与同一份契约**逐字段相等**（守卫 `tests/test_tv_export.py`）。
+> 不出口任何可交易字段（无仓位 / 无权重 / 无下单指令）。
+
+---
+
+## 🧰 常用命令（共 63 个，此处只列常用）
+
+| 命令 | 说明 |
+|:---|:---|
+| `train` / `evaluate` | 完整训练流水线（采集 → 特征 → 训练 → 评估） |
+| `predict <symbol>` / `batch <symbols...>` | 单只 / 批量预测（`--horizon {short_term,mid_term,long_term,all}`） |
+| `serve` / `export` | 启动 API 服务 / 导出 ONNX |
+| `daily-report` / `weekly-report` | 生成日 / 周度预测报告 |
+| `audit` | 预测审计（真实行情回溯命中率） |
+| `schedule` / `adaptive` | 自动重训练调度（常驻） / 自适应学习（性能监控 + 漂移检测） |
+| `decision-feed` / `tv-export` | 决策源契约导出 / TradingView 交付（图片卡 + Pine） |
+| `edge-check` | **基准相对决策增量**（净超额 + 扣成本 + 随机子集对照 + 状态分层） |
+| `ablation` | 特征集 × 模型族联合消融 |
+| `risk-signal` | 风险预测力检验（vs 朴素波动基线的增量） |
+| `overfit-audit` | 过拟合审计（CPCV + DSR + PBO + 统一试验预算） |
+| `regime` | 市场状态分层（HMM 牛/熊/震荡，`expanding` 无前视口径） |
+| `calibration` / `conformal-interval` | 概率校准（isotonic / Platt） / 保形预测区间 |
+| `portfolio-backtest` | 组合回测闭环（`--weights all` 三臂对照、`--signals rank` 截面排序） |
+| `drift-monitor` / `feature-attribution` | 漂移监控（PSI / KS） / TreeSHAP 状态×特征归因 |
+| `gate` / `gate-diagnose` / `risk-advice` | 策略门禁判定 / 阻塞诊断 / 风控建议（止损止盈，未放行则 fail-close） |
+| `macro` / `monitor` / `ic` / `ic-trend` / `ic-pool` | 宏观数据 / 监控报表 / IC 与命中率门禁评估 |
+| `trials` / `release-check` | 评估试验登记（append-only） / 发布态健康检查 |
+
+> 运行 `python main.py --help` 查看全部命令与参数；`python main.py <command> --help` 查看单命令参数。
+
+---
+
+## 📁 项目结构
+
+```text
+.
+├── configs/
+│   ├── config.yaml              # 默认配置（simulation 单源，离线可跑）
+│   └── config_pro.yaml          # 生产配置（wind→akshare→tencent→simulation，38 只标的）
+├── data/
+│   ├── raw/                     # 原始行情缓存 <symbol>.csv（模拟兜底不落盘）
+│   │   └── *.frozen.20260917.csv    # 冻结日K快照 —— clone 后可离线复算
+│   ├── processed/               # 特征工程后的数据集
+│   └── news/                    # 新闻缓存
+├── models/                      # 训练产物（pkl，含 feature_cols 契约）与 exported/（ONNX）
+├── logs/                        # 运行日志与评估报告（evaluation_report.txt）
+├── reports/                     # 报告输出（含 *.frozen.*.json 冻结读数）
+├── src/
+│   ├── data/                    # 采集 / 预处理 / 技术指标 / 情感分析 / 质量门控
+│   ├── train/                   # LightGBM 训练器、模型定义、自适应学习
+│   ├── eval/                    # 评估与研究方法层（双维评估器 + 30+ 专题模块）
+│   ├── inference/               # 推理引擎（缓存刷新 + 特征按名对齐）
+│   ├── api/                     # FastAPI 服务（含契约端点）
+│   ├── export/                  # 契约导出 / ONNX
+│   ├── report/                  # 日报 / 周报生成
+│   ├── scheduler/               # 自动重训练调度
+│   ├── audit/                   # 预测审计
+│   ├── notification/            # 信号推送
+│   ├── trading/                 # 交易适配层（信号 / 风控 / 订单 / 回测）
+│   └── utils/                   # 通用工具
+├── Kronos/                      # 第三方基础模型源码快照（见 docs/THIRD_PARTY.md）
+├── scripts/                     # 占位模型生成等工具脚本
+├── tests/                       # pytest 测试（78 个文件）
+├── 00_kickoff/                  # 各阶段交付结论与决策材料（可追溯证据链）
+├── cairn/                       # Project Cairn 知识层（ROADMAP / LOG / 专题结论）
+├── main.py                      # CLI 入口
+└── requirements.txt
 ```
 
 ---
 
-## 📦 仓库内容
+## ⚙️ 配置要点
 
-| 目录 | 说明 | 状态 |
-|:---|:---|:---:|
-| [**16_金融市场预测模型**](16_金融市场预测模型/) | **TrendCast Pro** — 多周期方向预测 + 真实数据链路 + 命中率审计 | ![active](https://img.shields.io/badge/-活跃-3fb950?style=flat-square) |
-| └ [**assets/readme**](assets/readme/) | 本 README 的 4 张预览图（架构 / 评估 / 数据链路 / 控制台） | ![asset](https://img.shields.io/badge/-素材-6e7681?style=flat-square) |
-| [**cairn**](cairn/) | Project Cairn 知识层 — 路线图、时序日志与各专题结论（`full-pool-baseline.md` / `benchmark-relative-edge.md` 等） | ![active](https://img.shields.io/badge/-知识-58a6ff?style=flat-square) |
-| [**00_kickoff**](00_kickoff/) | 各阶段交付结论与决策材料（可追溯证据链） | ![docs](https://img.shields.io/badge/-文档-6e7681?style=flat-square) |
-| [**schedule**](schedule/) | 排期（`plan.json` 唯一事实来源）与人工检查点登记（`manual_checkpoints.json`，16 条） | ![active](https://img.shields.io/badge/-排期-3fb950?style=flat-square) |
-| [**LICENSE**](LICENSE) | 禁止商业用途许可协议（Non-Commercial） | ![license](https://img.shields.io/badge/-法律-critical?style=flat-square) |
+默认加载 `configs/config_pro.yaml`（存在时优先），可用 `--config <path>` 覆盖。
 
-> 📌 **本仓库当前仅发布 `16_金融市场预测模型` 一个项目。** 子项目内部含 `configs/`、`src/`、`tests/`、`00_kickoff/`、`cairn/`、`Kronos/`（第三方快照）等目录，详见 [子项目 README](16_金融市场预测模型/README.md#四项目结构)。
->
-> 🚧 其余历史目录（`01_数据源与数据处理`、`04_交易与套保执行`、`09_配置与依赖`、`13_超算业务系统`）**未纳入本仓库版本库**，后续整理完成后另行发布，此处不作链接以免失效。
+```yaml
+data:
+  source: ["wind", "akshare", "tencent", "simulation"]   # 按序回退；simulation 兜底不写缓存
+  raw_dir: "data/raw"
+  start_date: "2020-01-01"
+  end_date: ""                    # 留空 = 采集至最新交易日
+  split_ratio: {train: 0.7, val: 0.15, test: 0.15}       # 时序切分，不 shuffle
+  markets:
+    stock:   {enabled: true, symbols: [...]}   # 26 只 A股/ETF（12 只个股 + 14 只 ETF）
+    futures: {enabled: true, symbols: [...]}   # 10 只商品期货主连（需 akshare）
+    forex:   {enabled: true, symbols: [...]}   # 2 只外汇（需 akshare）
+
+training:
+  adaptive_learning:
+    enabled: true
+    drift_threshold: 0.05         # 准确率下降超阈值触发重训练
+    auto_retrain: true
+```
+
+> 改标的池：直接编辑 `configs/config_pro.yaml` 的 `markets.*.symbols`，无需改代码。
+
+### 🧪 可选模型后端
+
+**TimesFM**（可插拔预测器）与 **Kronos**（第三方基础模型源码快照）均为可选的研究路径，
+**默认关闭**、尚未接入主推理链路：
+
+```powershell
+# TimesFM（可选；未安装 PyTorch 时自动使用 models/timesfm_*.pkl 占位模型，仅供链路验证）
+python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+python -m pip install timesfm[torch]
+
+# 启用后：
+python main.py predict 600519.SH --horizon mid_term --model-type timesfm
+python main.py predict 600519.SH --horizon mid_term --model-type ensemble   # LightGBM + TimesFM 融合
+```
+
+> - 占位模型：`models/timesfm_{short,mid,long}_term_*.pkl`（`{'model': DummyModel(), 'scaler': DummyScaler()}`），
+>   确保无 PyTorch 环境下推理与测试仍可用；生成 / 修复脚本见 `scripts/create_timesfm_placeholders.py`。
+> - 配置段：`model.timesfm.{enabled,context_days,verbose}`（见 `configs/config.yaml`）。
+> - Windows 上若报 `WinError 126`，通常是 PyTorch 与 CUDA/CPU 版本不匹配，改用 CPU 版即可。
+> - **Kronos/**：开源金融 K 线基础模型 [shiyu-coder/Kronos](https://github.com/shiyu-coder/Kronos)
+>   的源码快照（commit `67b630e`），**非本项目原创**，仅作后续接入实验底座，尚未与 `src/` 主链路打通。
 
 ---
 
-## 🔗 与主系统集成
+## 🧪 测试与复算
 
-本仓库作为 **只读信号源**，与外部独立仓库 **28-终极量化交易系统8.4**（不在本仓库内，故不作链接）通过 REST 对接。
+```bash
+# 全量测试（78 个测试文件、1500+ 用例）
+python -m pytest tests -q
 
-> **设计原则：本系统只出方向与概率，主系统独享决策权。**（一期只读注入，不改变主系统任何下单 / 调仓行为）
+# 离线复算：用冻结快照，无需联网、无需 Key
+python main.py edge-check          # 基准相对净超额
+python main.py ablation            # 特征集 × 模型族消融
+python main.py risk-signal         # 风险预测力增量
+```
 
-> **Issue #55 更新**：下游无需再自算口径 —— 契约层已出口 `net_up_probability`（净看涨概率，
-> 免除 `direction == "看涨" ? p : 1−p` 这类条件分支）、显式权重的多周期综合分、
-> 校准概率与**采纳建议**。服务态与离线管道态（`main.py decision-feed`）逐字段一致。
-> 实测结论：高置信子集命中率↑但平均已实现收益↓ ⇒ 信号宜作**只读观测**，
-> 不宜按"高置信"放大仓位。
->
-> ⚠️ **后续修正（Issue #55 九轮排查）**：「高置信 ⇒ 收益↓」只在**低波动**状态成立，
-> 置信度本身**不是** edge 信号（`IC(置信度,收益) ≈ 0 ~ −0.09`）；「另立项目做**风险预警**」
-> 这条退路经 `risk-signal` 独立检验也**不成立** —— 朴素 trailing-vol 基线 IC 已有 0.69~0.75，
-> 模型输出增量仅 0.03~0.09（三周期全低于效应量下限）⇒ **不做风险预警项目**。
-> 契约层已出口 `net_up_probability` / `composite_score` / `advisory_consumable` 等字段，
-> 由生产方统一口径；**只读**：不产出仓位、不改门禁。
+> ⚠️ **测试环境提示**：本仓库根目录**不含** `pytest.ini` / `pyproject.toml`，
+> 因此请显式指定 `tests` 目录（如上）。部分测试需要可选依赖（`optuna` / `hmmlearn` / `mapie`），
+> 缺失时这些用例会**显式 skip 或 fail-import**，属预期行为、不是回归。
+> 本机基线（2026-09-29，Python 3.11 + lightgbm 4.7.0）：**1542 passed / 10 failed / 8 skipped**，
+> 10 条失败全部为**环境缺少可选依赖或依赖版本差异**所致。
 
-| 组件 | 职责 |
-|:---|:---|
-| **客户端** | 健康检查 · 组合摘要 · 读取主系统持仓（fail-open，服务不可达即跳过） |
-| **审计** | JSONL 落盘 + 本地真实行情回溯 + 命中率 / 漂移告警 |
-| **接线** | `daily_runner.py` 步骤 2.5 — 拉取 → 审计 → 信号卡片 → 每日报告 |
+> 🧊 **冻结数据可复算**：`data/raw/*.frozen.20260917.csv` 与 `reports/*.frozen.*.json`
+> 已入库，clone 后**离线**即可复现关键读数，不依赖采集时刻与网络可达性。
 
-**验证状态**（2026-09-09 E2E 冒烟通过）
+---
 
-- ✅ **正路径** — 26 标的 × 3 周期 = 78 条真实预测（概率 43%~55%，脱离 0.5 兜底）
-- ✅ **命中率链路** — 78 条到期记录 → 57 条被真实行情回溯 → **真实命中率 56.1%**
-- ✅ **fail-open** — 本系统服务关闭 → 主系统优雅跳过，主流程零中断
-- ✅ **数据卫生** — 模拟时代旧审计记录已清除
+## 🔬 研究进展（精简）
+
+排期唯一事实来源：`schedule/plan.json`；历史试验以 append-only 登记在 `trials`。
+各阶段结论与边界（含**否定结论**）沉淀在 [`cairn/`](cairn/) 与 [`00_kickoff/`](00_kickoff/)。
+
+| 阶段 | 内容 | 关键结论（含否定） |
+|:---|:---|:---|
+| S1~S10 | 回测层 / baseline / 特征 / 风控 / 分池门禁 | 基础设施就绪（vectorbt 回测、按资产类别分池） |
+| S11~S15 (G) | 评估量尺 / 标签重构 / qlib 因子 / 数据源升级 / 调参 | 换周期**不支持**；加横截面/宏观特征**无显著增量**；akshare 升 P1 覆盖期货外汇 |
+| S16~S20 (H) | 保形区间 / CPCV 过拟合加固 / HMM 状态 / 概率校准 / LLM 辅助 | 校准有效（ECE 0.1042→0.0025）；状态分层解释力有限；LLM 辅助**评估不通过、整阶段取消** |
+| S21~S25 (I) | 组合回测 / 三臂对照 / 漂移监控 / TreeSHAP / 组合级过拟合审计 | **PBO 0.011** 但 **DSR 0.08~0.24**、MinTRL ≫ 现有样本 ⇒ 样本长度不足以把 Sharpe>0 当真 |
+| Issue #55（九轮） | 决策源契约 + 九轮有效性排查 + 全池基线冻结 | **无决策增量**（见上文）；两条静默缺陷已修；结论钉到同一全池切片并冻结入库 |
+| Issue #66 (J) | Laya 只读第二决策源（接入前预注册 + 冻结快照回放） | 接入前**先冻结判据**（fail-close）；重型依赖与保留决策待人工签字 |
+
+<details>
+<summary><b>📌 点击展开：九轮排查如何一步步否掉各个假设</b></summary>
+
+| 轮次 | 检验 | 结论 |
+|:--:|:---|:---|
+| ①②③ | 池共线性 / 三重障碍法标签 / 周期权重重排 | 缩池**无效**；标签口径**证伪**；现行权重与证据方向相反 |
+| ④ | 波动分层与置信度语义 | 「高置信 ⇒ 负收益」只在**低波动**成立；置信度**不是** edge 信号 |
+| ⑤ | 换记分板（相对全池等权净超额） | 信号**无净超额**，随机抽同数量标的即可反超 |
+| ⑥ | 特征集 × 模型族联合消融 | 八个子集**无一转正**；模型族仅 10d「更不差」⇒ 不够格改配置 |
+| ⑦⑧ | 状态分层（全池）+ 修复两条静默缺陷 | 各状态**净超额均为负**；顺带修掉 HMM 起步静默降级等真缺陷 |
+| ⑧ | 风险预测力检验 | `no_risk_increment`：朴素波动基线已把模型能做的做完 |
+| ⑨ | 全池基线读数冻结 | 结论钉到**同一全池切片**并冻结入库，clone 后离线可复算 |
+
+</details>
+
+---
+
+## ⚠️ 已知限制
+
+- **信号无正向 edge**（最硬结论）：净超额三周期为负或不显著，状态分层无正向状态，消融无子集转正
+- **风险预警退路同样不成立**：朴素 trailing-vol 基线 IC 0.69~0.75，模型增量仅 0.03~0.09
+- **模型存在退化倾向**：最新复跑三周期召回率 ≈ 1.0（近乎恒定方向输出）⇒ 准确率不携带信息
+- **评估为历史回测口径**：未扣真实滑点与冲击成本，实盘前需纸面跟踪
+- **样本长度不足**：MinTRL 2173~8382 天 ≫ 现有 1569 天；DSR 0.08~0.24
+- **数据源依赖**：期货/外汇仅 akshare 档可覆盖；Wind 需终端与 Key（可选）
+- **宏观与新闻情感为配置开关，默认关闭**；宏观缺失时**置空、不做前视填充**
+- TimesFM / Kronos 路径尚未接入主推理链路（后者为第三方源码快照，仅实验底座）
+- `tune` 的 optuna 搜索当前仅覆盖 LightGBM
 
 ---
 
@@ -485,11 +466,19 @@ curl "http://localhost:8800/api/v1/portfolio/summary?symbols=300308.SZ,601088.SH
 | ✅ | **允许** — 学习、研究、教学、学术、非商业内部评估用途 |
 | ❌ | **禁止** — 一切商业用途，包括商业产品 / 服务、金融机构对外产品、以营利为目的的量化交易或信号售卖 |
 | ❌ | **禁止** — 转售、出租、分发牟利、再许可、去除版权标识 |
-| 🔒 | **商用授权** — 须事先取得版权方（yuppiez328 / 安然）的书面许可 |
+| 🔒 | **商用授权** — 须事先取得版权方（yuppiez328 / 安然）的书面同意 |
 
 ### 免责声明
 
-本软件仅供学习、研究和非商业用途使用，按"现状"（AS IS）提供，**不构成任何投资建议**。金融市场具有高度不确定性，任何模型的历史表现均不代表未来收益。使用者应自行承担一切投资风险与合规责任。
+本软件仅供学习、研究和非商业用途使用，按「现状」（AS IS）提供，**不构成任何投资建议**。
+金融市场具有高度不确定性，任何模型的历史表现均不代表未来收益。
+项目中出现的全部标的、数值与结论均为**研究与工程验证用途**。
+使用者应自行承担一切投资风险与合规责任。
+
+### 第三方组件
+
+第三方依赖与源码快照的来源、许可证登记见 [`docs/THIRD_PARTY.md`](docs/THIRD_PARTY.md)
+与 [`Kronos/THIRD_PARTY_NOTICE.md`](Kronos/THIRD_PARTY_NOTICE.md)。
 
 ---
 

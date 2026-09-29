@@ -666,7 +666,7 @@ def build_portfolio_summary(engine: Any, config: dict, symbol_list: list[str]) -
                 continue
             # S19 / H4（T19.3）：**追加**校准字段（calibrated_probability /
             # uncertainty），既有 direction / probability / model 逐字段不变，
-            # 保证 28 侧可渐进消费。校准参数缺失时如实标 calibration_applied=false。
+            # 保证下游可渐进消费。校准参数缺失时如实标 calibration_applied=false。
             enriched = enrich_prediction(pred, hname)
             horizons_out[hname] = {
                 "direction": pred.get("direction", "未知"),
@@ -846,7 +846,7 @@ async def get_risk_advice_batch(
 async def get_portfolio_summary(
     symbols: str = Query(None, description="逗号分隔的标的列表，缺省用 config 启用的 markets 标的"),
 ):
-    """组合级多周期方向预测摘要（供 28 量化系统消费；16_ 只出方向与概率，不输出仓位建议）"""
+    """组合级多周期方向预测摘要（供下游系统消费；本项目只出方向与概率，不输出仓位建议）"""
     _init_engine()
     if not _engine or not _engine.models:
         raise HTTPException(503, "模型未加载，请先训练模型")
@@ -888,7 +888,7 @@ def _resolve_symbols(symbols: str | None) -> list[str]:
 async def get_decision_feed(
     symbols: str = Query(None, description="逗号分隔的标的列表，缺省用 config 启用的 markets 标的"),
 ):
-    """**决策源契约**（供 tradingview / 28 等下游消费者直接落库、打分、回测）。
+    """**决策源契约**（供 tradingview / 下游系统等消费者直接落库、打分、回测）。
 
     在原始预测之上**只增不减**地追加下游真正需要的决策字段：
 

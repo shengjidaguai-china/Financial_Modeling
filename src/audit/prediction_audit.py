@@ -59,7 +59,7 @@ class PredictionAudit:
         """记录一条带**来源标记**的预测（新版共享记账接口）。
 
         为什么需要它（真缺陷，不是风格问题）：
-          外部决策源（tradingview / 28 的 `daily_runner` 步骤 2.5）把预测送进来
+          外部决策源（如 tradingview / 下游系统的 `daily_runner` 步骤 2.5）把预测送进来
           时用的是**逐条 dict**，与 `record_prediction` 的字段口径不同，且无法
           标注来源；一旦上游改用 positional / 关键字传参，就会被静默写进
           ``symbol=None`` 的坏记录（既不报错、也无法在统计里分辨）。
@@ -180,7 +180,7 @@ class PredictionAudit:
 
         if not verified:
             # 尚无已验证记录时也输出完整报告骨架：报告始终可读、字段稳定，
-            # 便于上游（28 系统 / 日报）无差别解析。
+            # 便于上游（下游系统 / 日报）无差别解析。
             pending = len(records) - len(verified)
             lines = [
                 "# 预测审计报告",

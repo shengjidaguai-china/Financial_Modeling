@@ -1,6 +1,6 @@
 """审计共享记账接口守卫（PredictionAudit.record_prediction_v2）。
 
-下游（tradingview / 28 的 daily_runner 步骤 2.5）把预测送进来时用的是
+下游（tradingview / 外部系统的 daily_runner 步骤 2.5）把预测送进来时用的是
 **逐字段 dict**，与既有 `record_prediction(prediction_dict)` 的口径不同，
 且无法标注来源。一旦字段对不上，就会被静默写成 ``symbol=None`` 的坏记录：
 不报错、也无法在统计中分辨来源 —— 属于"检测器存在≠生效"的同族缺陷。

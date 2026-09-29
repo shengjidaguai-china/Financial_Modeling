@@ -1155,7 +1155,7 @@
      "status": "completed"
     },
     {
-     "name": "API 契约扩展：/api/v1/portfolio/summary 与 /signal 增加 calibrated_probability 与 uncertainty 字段（向后兼容，28 侧可渐进消费）",
+     "name": "API 契约扩展：/api/v1/portfolio/summary 与 /signal 增加 calibrated_probability 与 uncertainty 字段（向后兼容，下游可渐进消费）",
      "auto_run": true,
      "completed_at": "2026-09-12T00:58:49.498077+00:00",
      "result": "src/inference/probability_calibrator.py：推理期只读套用校准参数（缺文件=不校准不猜）；src/api/server.py 追加 calibrated_probability/uncertainty/calibration_applied 字段，既有字段逐字段不变（向后兼容）",

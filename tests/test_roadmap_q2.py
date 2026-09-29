@@ -462,7 +462,7 @@ class TestHoldingsPoolAndQuality:
         with open(PROJECT_ROOT / "configs" / "config_pro.yaml", "r", encoding="utf-8") as f:
             pro = yaml.safe_load(f)
         symbols = pro["data"]["markets"]["stock"]["symbols"]
-        assert len(symbols) >= 26, "专业版应覆盖 28 系统的真实持仓池"
+        assert len(symbols) >= 26, "专业版应覆盖内建标的池（26 只 A股/ETF）"
         assert len(symbols) == len(set(symbols)), "持仓池不应有重复标的"
         # 真实行情源优先，模拟仅作兜底
         assert pro["data"]["source"][0] == "wind"

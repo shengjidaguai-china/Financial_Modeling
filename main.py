@@ -4068,7 +4068,7 @@ def run_decision_feed_cmd(config: dict, symbols: list[str] | None = None,
     """**决策源契约导出**（`python main.py decision-feed`）。
 
     为什么要有这条命令（而不是只在 API 里做）：
-      下游 tradingview / 28 的集成是靠**离线管道**跑的（`scripts/` 下逐行读
+      下游（tradingview 等）的集成是靠**离线管道**跑的（`scripts/` 下逐行读
       标的清单 → 写 JSON → 消费），不一定常驻 HTTP 服务。把契约构建做成
       CLI，可以让「同一份契约」在服务态与离线管道态**逐字段一致**，
       避免又出现两套换算。

@@ -3,10 +3,10 @@
 
 ## 为什么需要这一层
 
-16_ 的既定定位是「只出方向与概率，决策权归下游（tradingview / 28 系统）」。
+本项目（TrendCast Pro / 16_）的既定定位是「只出方向与概率，决策权归下游消费方」。
 但下游真正落地时反复遇到同一个问题：**契约里给的都是「原材料」，
 每个消费方都要自己再写一遍同样的换算**，于是同一份预测在不同链路上
-被翻译成不同的口径 —— 28 侧 `trendcast_signal_source._aggregate` 就是
+被翻译成不同的口径 —— 例如下游自建信号源实现的 `_aggregate` 就是
 一例（自己定 0.2/0.5/0.3 权重、自己定 0.6/0.4 动作阈值、只用
 `|p-0.5|×2` 当置信度）。
 
@@ -115,7 +115,7 @@ def aggregate_horizons(horizons: Dict[str, Any],
                        weights: Optional[Dict[str, float]] = None) -> Dict[str, Any]:
     """多周期净看涨概率加权聚合 → 综合分（可复算、可解释）。
 
-    与 28 侧 `_aggregate` 的关键差别：
+    与下游自建聚合实现（如 `_aggregate`）的关键差别：
       - 只对**可用周期**归一（缺失周期不补 0.5，避免把"没有观点"稀释成
         "中性观点"—— 这两者在门槛子集口径下行为完全不同）；
       - 显式回报 `missing_horizons` / `coverage`，下游可据覆盖率决定是否采信；
@@ -420,7 +420,7 @@ def build_decision_feed(payload: Dict[str, Any], config: Optional[Dict[str, Any]
         "audit": _audit_window(cfg, hours=audit_hours, records=_records),
         "analytics": _analytics(cfg, threshold, records=_records),
         "meta": meta_in,
-        "note": ("本 feed 是 16_ 对下游决策源（tradingview / 28）的只读契约："
+        "note": ("本 feed 是对下游决策源（tradingview / 下游系统）的只读契约："
                  "只出方向、概率、校准值与**采纳建议**，不产出仓位/下单建议；"
                  "所有新增字段均为增量，原始 direction/probability/model 逐字段保留。"),
     }
