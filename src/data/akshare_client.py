@@ -109,10 +109,13 @@ def akshare_available() -> bool:
 def split_symbol(symbol: str) -> tuple[str, str]:
     """拆分项目代码 → (市场类型, 主代码)。
 
-    返回市场类型属于: stock / etf / futures / forex / unknown。
+    返回市场类型属于: stock / etf / futures / forex / us_stock / us_futures / unknown。
+
     判定只看代码形态，不依赖外部字典：
-      - `RB.SHF` / `CU.SHF` / `SC.INE` / `I.DCE` → futures（交易所后缀）
+      - `RB.SHF` / `CU.SHF` / `SC.INE` / `I.DCE` → futures（国内期货，交易所后缀）
       - `USDCNH.FXCM` → forex
+      - `AAPL.US` / `MSFT.US` → us_stock（美股，akshare stock_us_daily 免费档）
+      - `CL.GLB` / `ZSD.GLB` → us_futures（海外期货，akshare futures_foreign_hist 免费档）
       - `600519.SH` / `000858.SZ` 且前缀 5/1/3 开头 → etf（场内基金/ETF）
       - 其余 .SH/.SZ → stock
     """
@@ -124,6 +127,10 @@ def split_symbol(symbol: str) -> tuple[str, str]:
         return "futures", code
     if suffix == "FXCM":
         return "forex", code
+    if suffix == "US":
+        return "us_stock", code
+    if suffix == "GLB":
+        return "us_futures", code
     if suffix in ("SH", "SZ"):
         # 场内基金/ETF 代码：5xx（沪）/ 15x、16x、18x（深）
         if code.startswith(("5", "15", "16", "18")):
@@ -241,6 +248,10 @@ class AkshareClient:
                 return self._fetch_futures(ak, symbol)
             if market == "forex":
                 return self._fetch_forex(ak, symbol)
+            if market == "us_stock":
+                return self._fetch_us_equity(ak, symbol)
+            if market == "us_futures":
+                return self._fetch_us_futures(ak, symbol)
             # stock / etf
             return self._fetch_equity(ak, symbol, market, start_date, end_date)
 
@@ -381,6 +392,49 @@ class AkshareClient:
         # 新浪列序：date, open, low, high, close
         df = pd.DataFrame(rows, columns=["date", "open", "low", "high", "close"])
         return df
+
+    # ------------------------------------------------------------------
+    # 美股 / 海外期货（akshare 免费档，与 A 股/国内期货同走 _normalize 统一口径）
+    # ------------------------------------------------------------------
+    def _fetch_us_equity(self, ak: Any, symbol: str) -> Optional[pd.DataFrame]:
+        """美股日K（akshare stock_us_daily，新浪/雪球系通道，免费）。
+
+        与 A 股 `_fetch_equity` 同走 akshare 新浪系通道，列序经 `_normalize` 统一。
+        adjust='qfq' 与 A 股口径一致（前复权）；akshare 美股接口覆盖 10 年+ 日K。
+        """
+        _market, code = split_symbol(symbol)
+        return ak.stock_us_daily(symbol=code, adjust="qfq")
+
+    def _fetch_us_futures(self, ak: Any, symbol: str) -> Optional[pd.DataFrame]:
+        """海外期货日K（akshare futures_foreign_hist，全球商品期货，免费）。
+
+        覆盖 CME/NYMEX/CBOT/ICE/LME 等主流海外期货（原油/黄金/大豆/铜…），
+        10 年+ 日K。symbol 用 akshare 认的代码（如 CL/ZSD/GC），配置写作 `CL.GLB`。
+        与国内期货 `RB.SHF` 严格分档，互不混淆。
+        """
+        _market, code = split_symbol(symbol)
+        return ak.futures_foreign_hist(symbol=code)
+
+    def fetch_us_fundamentals(self, symbol: str) -> Optional[pd.DataFrame]:
+        """美股财务报表（akshare stock_financial_us_report_em，东财系，免费）。
+
+        非 OHLCV——返回资产负债表/利润表/现金流等财务行项，**不进 collector 日K链**，
+        供特征工程作额外因子源（如 P/E、ROE、负债率）。仅美股(.US)可用。
+        fail-open：未安装 / 非 .US / 接口异常一律返回 None。
+        """
+        ak = self._get_ak()
+        if ak is None:
+            return None
+        market, code = split_symbol(symbol)
+        if market != "us_stock":
+            logger.warning(f"[akshare] fetch_us_fundamentals 仅支持美股(.US): {symbol}")
+            return None
+        ensure_no_proxy()
+        try:
+            return ak.stock_financial_us_report_em(symbol=code)
+        except Exception as e:  # noqa: BLE001  fail-open
+            logger.warning(f"[akshare] {symbol} 美股基本面拉取失败: {e}")
+            return None
 
     # ------------------------------------------------------------------
     @staticmethod

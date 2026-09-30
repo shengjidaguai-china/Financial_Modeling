@@ -77,6 +77,30 @@ data:
         - "USDCNH.FXCM"  # 美元兑离岸人民币
         - "USDCNY.FXCM"  # 美元兑在岸人民币
 
+    # 美股股票（akshare stock_us_daily 免费档，10年+ 日K，新浪/雪球系通道）
+    # 代码后缀 .US；与 A 股 .SH/.SZ 严格分档，互不混淆。
+    # 缺省关闭：按需开启，避免无意中扩大采集范围影响 A 股主线管线。
+    us_stock:
+      enabled: false
+      symbols:
+        - "AAPL.US"   # Apple
+        - "MSFT.US"   # Microsoft
+        - "NVDA.US"   # NVIDIA
+        - "TSLA.US"   # Tesla
+        - "AMZN.US"   # Amazon
+
+    # 海外期货（akshare futures_foreign_hist 免费档，全球商品期货 10年+ 日K）
+    # 代码后缀 .GLB；symbol 用 akshare 认的代码（CL=原油, GC=黄金, SI=白银, ZSD=大豆, ZC=玉米…）。
+    # 与国内期货 RB.SHF 严格分档。缺省关闭。
+    us_futures:
+      enabled: false
+      symbols:
+        - "CL.GLB"    # WTI 原油（NYMEX）
+        - "GC.GLB"    # 黄金（COMEX）
+        - "SI.GLB"    # 白银（COMEX）
+        - "ZSD.GLB"   # 大豆（CBOT）
+        - "ZC.GLB"    # 玉米（CBOT）
+
   # 时间范围（end_date 留空 = 采集至最新交易日）
   start_date: "2020-01-01"
   end_date: ""

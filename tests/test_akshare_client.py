@@ -79,6 +79,11 @@ class TestSymbolMapping:
         assert split_symbol("SR.CZC") == ("futures", "SR")
         # 外汇
         assert split_symbol("USDCNH.FXCM") == ("forex", "USDCNH")
+        # 美股 / 海外期货
+        assert split_symbol("AAPL.US") == ("us_stock", "AAPL")
+        assert split_symbol("MSFT.US") == ("us_stock", "MSFT")
+        assert split_symbol("CL.GLB") == ("us_futures", "CL")
+        assert split_symbol("ZSD.GLB") == ("us_futures", "ZSD")
         # 未知
         assert split_symbol("") == ("unknown", "")
         assert split_symbol("XXX") == ("unknown", "XXX")
@@ -394,6 +399,49 @@ class TestFetchDispatch:
         c._ak = _FakeAk({})
         assert c.fetch("USDCNH.FXCM") is None
 
+    def test_fetch_us_stock_uses_stock_us_daily(self):
+        """美股 .US → akshare stock_us_daily(adjust='qfq')，列序经 _normalize 统一。"""
+        c = AkshareClient({"data": {}})
+        fake = _FakeAk({"stock_us_daily": _raw(40)})
+        c._ak = fake
+        out = c.fetch("AAPL.US", start_date="2024-01-01", end_date="2099-01-01")
+        assert out is not None and len(out) == 40
+        assert list(out.columns) == STD_COLUMNS
+        name, kwargs = fake.calls[0]
+        assert name == "stock_us_daily"
+        assert kwargs["symbol"] == "AAPL"
+        assert kwargs["adjust"] == "qfq"
+
+    def test_fetch_us_futures_uses_futures_foreign_hist(self):
+        """海外期货 .GLB → akshare futures_foreign_hist，与国内期货 RB.SHF 严格分档。"""
+        c = AkshareClient({"data": {}})
+        fake = _FakeAk({"futures_foreign_hist": _raw(40)})
+        c._ak = fake
+        out = c.fetch("CL.GLB")
+        assert out is not None and len(out) == 40
+        assert list(out.columns) == STD_COLUMNS
+        name, kwargs = fake.calls[0]
+        assert name == "futures_foreign_hist"
+        assert kwargs["symbol"] == "CL"
+
+    def test_fetch_us_fundamentals_success(self):
+        """美股基本面（非 OHLCV，独立入口）→ 财务报表 DataFrame。"""
+        c = AkshareClient({"data": {}})
+        c._ak = _FakeAk({"stock_financial_us_report_em": pd.DataFrame({"item": ["revenue"], "value": [1e9]})})
+        df = c.fetch_us_fundamentals("AAPL.US")
+        assert df is not None and len(df) == 1
+
+    def test_fetch_us_fundamentals_rejects_non_us(self):
+        """fetch_us_fundamentals 仅支持 .US，A 股代码返回 None。"""
+        c = AkshareClient({"data": {}})
+        c._ak = _FakeAk({})
+        assert c.fetch_us_fundamentals("600519.SH") is None
+
+    def test_fetch_us_fundamentals_not_installed(self):
+        c = AkshareClient({"data": {}})
+        c._get_ak = lambda: None
+        assert c.fetch_us_fundamentals("AAPL.US") is None
+
     def test_akshare_available_is_bool(self):
         assert isinstance(akshare_available(), bool)
 
@@ -467,7 +515,7 @@ class TestFallbackChain:
 
     def test_akshare_client_import_error_is_failopen(self, monkeypatch):
         """未安装 akshare 时 _fetch_akshare 必须静默返回 None，不向上抛。"""
-        import src.data.collector as collector_mod
+        import src.data.collector as collector_mod  # noqa: F401  确保模块在 patch 前已加载
 
         orig_import = __builtins__["__import__"] if isinstance(__builtins__, dict) else __builtins__.__import__
 

@@ -57,6 +57,23 @@
 <img src="https://img.shields.io/badge/%E9%98%B2%E7%9B%AE%E6%A0%87%E6%B3%84%E6%BC%8F-%E5%B7%B2%E4%BF%AE%E5%A4%8D-58a6ff?style=flat-square" alt="Leak fix">
 <img src="https://img.shields.io/badge/%E6%9C%AC%E5%9C%B0%E5%A4%8D%E7%AE%97-%E5%86%BB%E7%BB%93%E5%BF%AB%E7%85%A7%E5%B0%B1%E7%BB%AA-3fb950?style=flat-square" alt="Reproducible">
 
+<br/>
+
+<!-- ── 美股扩展（akshare 免费 + fdnpy 期权） ── -->
+<img src="https://img.shields.io/badge/%E7%BE%8E%E8%82%A1%E6%97%A5K-akshare-3fb950?style=flat-square" alt="US stock">
+<img src="https://img.shields.io/badge/%E6%B5%B7%E5%A4%96%E6%9C%9F%E8%B4%A7-akshare-3fb950?style=flat-square" alt="US futures">
+<img src="https://img.shields.io/badge/%E7%BE%8E%E8%82%A1%E6%9C%9F%E6%9D%83-fdnpy-9e6a03?style=flat-square" alt="US options">
+
+<br/>
+
+<!-- ── GitHub 动态徽章 ── -->
+<a href="https://github.com/shengjidaguai-china/Financial_Modeling/stargazers"><img src="https://img.shields.io/github/stars/shengjidaguai-china/Financial_Modeling?style=flat-square&logo=github&label=Stars" alt="Stars"></a>
+<a href="https://github.com/shengjidaguai-china/Financial_Modeling/network/members"><img src="https://img.shields.io/github/forks/shengjidaguai-china/Financial_Modeling?style=flat-square&logo=github&label=Forks" alt="Forks"></a>
+<a href="https://github.com/shengjidaguai-china/Financial_Modeling/issues"><img src="https://img.shields.io/github/issues/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Issues" alt="Issues"></a>
+<img src="https://img.shields.io/github/last-commit/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Last%20Commit" alt="Last Commit">
+<img src="https://img.shields.io/github/repo-size/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Size" alt="Repo Size">
+<img src="https://img.shields.io/github/commit-activity/m/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Commits/m" alt="Commit Activity">
+
 </div>
 
 ---
