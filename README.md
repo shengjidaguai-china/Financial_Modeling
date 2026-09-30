@@ -116,6 +116,9 @@ python main.py release-check     # 发布态健康检查（读本地报告）
 >
 > 💡 **Wind 数据源**：配置环境变量 `WIND_API_KEY` 即启用（机构级 P0 源）；未配置时自动跳过，
 > 依次降级到 akshare / 腾讯财经，**无需任何 Key 即可跑通全链路**。
+>
+> 💡 **美股 / 海外期货 / 期权**：美股股票日K、海外期货、美股基本面走 akshare 免费档（零新依赖，
+> 代码后缀 `.US` / `.GLB`）；美股期权需 `pip install fdnpy` + `FDN_API_KEY`（见下方[配置要点](#--美股--海外期货--期权数据源)）。
 
 ---
 
@@ -370,6 +373,8 @@ data:
     stock:   {enabled: true, symbols: [...]}   # 26 只 A股/ETF（12 只个股 + 14 只 ETF）
     futures: {enabled: true, symbols: [...]}   # 10 只商品期货主连（需 akshare）
     forex:   {enabled: true, symbols: [...]}   # 2 只外汇（需 akshare）
+    us_stock:   {enabled: false, symbols: ["AAPL.US", "MSFT.US", ...]}   # 美股日K（akshare 免费档）
+    us_futures: {enabled: false, symbols: ["CL.GLB", "GC.GLB", ...]}     # 海外期货日K（akshare 免费档）
 
 training:
   adaptive_learning:
@@ -379,6 +384,62 @@ training:
 ```
 
 > 改标的池：直接编辑 `configs/config_pro.yaml` 的 `markets.*.symbols`，无需改代码。
+
+### 🌐 美股 · 海外期货 · 期权数据源
+
+本项目在 A 股主线之外，已扩展支持美股股票、海外期货与美股期权。采用**混合架构**——
+股票/期货/基本面复用 akshare 免费档（零新依赖），仅期权引入 fdnpy（akshare 无美股期权）。
+
+**代码后缀约定**（`split_symbol` 按后缀自动路由，collector 无需改代码）：
+
+| 后缀 | 市场 | 数据源 | 示例 | 费用 |
+|---|---|---|---|---|
+| `.SH` / `.SZ` | A 股 / ETF | akshare / 腾讯 | `600519.SH` | 免费 |
+| `.SHF` / `.DCE` / `.CZC` / `.INE` | 国内期货 | akshare | `RB.SHF` | 免费 |
+| `.FXCM` | 外汇 | akshare（新浪通道） | `USDCNH.FXCM` | 免费 |
+| `.US` | **美股股票** | akshare `stock_us_daily` | `AAPL.US` | 免费 |
+| `.GLB` | **海外期货** | akshare `futures_foreign_hist` | `CL.GLB` | 免费 |
+
+**启用美股采集**（缺省关闭，按需开）：
+
+```yaml
+data:
+  markets:
+    us_stock:   {enabled: true}   # AAPL.US / MSFT.US / NVDA.US / TSLA.US / AMZN.US
+    us_futures: {enabled: true}   # CL.GLB(原油) / GC.GLB(黄金) / SI.GLB(白银) / ZSD.GLB(大豆) / ZC.GLB(玉米)
+```
+
+```bash
+python main.py predict AAPL.US --horizon all    # 美股预测，与 A 股同口径
+```
+
+**美股期权（fdnpy，需 API Key）**：
+
+akshare 无美股期权，故引入 [fdnpy](https://github.com/financialdatanet/fdnpy)（FinancialData.Net SDK）
+补齐期权链 / 价格 / Greeks。需 Standard 订阅档 Key；未配置时**优雅降级**（返回 None，不阻断主链路）。
+
+```bash
+pip install fdnpy
+export FDN_API_KEY=your_key          # Windows: set FDN_API_KEY=your_key
+```
+
+```python
+from src.data.fdn_client import FdnClient
+fdn = FdnClient(config)
+chain  = fdn.fetch_option_chain("MSFT")                  # 期权链（contract/expiration/strike/put_call）
+prices = fdn.fetch_option_prices("MSFT260123C00455000")  # 合约日K（date/open/high/low/close/volume）
+greeks = fdn.fetch_option_greeks("MSFT260123C00455000")  # Greeks（delta/gamma/theta/vega/rho）
+```
+
+**美股基本面**（akshare 免费档，无需 Key）：
+
+```python
+from src.data.akshare_client import AkshareClient
+fin = AkshareClient(config).fetch_us_fundamentals("AAPL.US")   # 财务报表（非 OHLCV，作额外因子源）
+```
+
+> 期权为**非 OHLCV 资产类别**，不进 collector 日K优先级链，由调用方按需独立取数。
+> TradingView 未接入：其无官方数据 API，第三方 tvDatafeed 逆向私有 WebSocket 违反 ToS 且无期权支持。
 
 ### 🧪 可选模型后端
 
@@ -465,7 +526,7 @@ python main.py risk-signal         # 风险预测力增量
 - **模型存在退化倾向**：最新复跑三周期召回率 ≈ 1.0（近乎恒定方向输出）⇒ 准确率不携带信息
 - **评估为历史回测口径**：未扣真实滑点与冲击成本，实盘前需纸面跟踪
 - **样本长度不足**：MinTRL 2173~8382 天 ≫ 现有 1569 天；DSR 0.08~0.24
-- **数据源依赖**：期货/外汇仅 akshare 档可覆盖；Wind 需终端与 Key（可选）
+- **数据源依赖**：期货/外汇仅 akshare 档可覆盖；美股股票/海外期货/基本面走 akshare 免费档（`.US`/`.GLB`）；美股期权需 fdnpy + `FDN_API_KEY`（Standard 订阅档，缺 Key 优雅降级）；Wind 需终端与 Key（可选）
 - **宏观与新闻情感为配置开关，默认关闭**；宏观缺失时**置空、不做前视填充**
 - TimesFM / Kronos 路径尚未接入主推理链路（后者为第三方源码快照，仅实验底座）
 - `tune` 的 optuna 搜索当前仅覆盖 LightGBM
