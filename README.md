@@ -22,49 +22,59 @@
 
 <div align="center">
 
-<!-- ── 项目与状态 ── -->
-<a href="./LICENSE"><img src="https://img.shields.io/badge/%E8%AE%B8%E5%8F%AF%E8%AF%81-%E7%A6%81%E6%AD%A2%E5%95%86%E7%94%A8-critical?style=flat-square&logo=creativecommons&logoColor=white" alt="License"></a>
-<img src="https://img.shields.io/badge/%E7%89%88%E6%9C%AC-v2.0.0%20professional-1f6feb?style=flat-square" alt="Version">
-<img src="https://img.shields.io/badge/%E7%8A%B6%E6%80%81-%E7%A0%94%E7%A9%B6%E9%98%B6%E6%AE%B5-d29922?style=flat-square" alt="Status">
-<img src="https://img.shields.io/badge/%E4%BF%A1%E5%8F%B7-%E5%8F%AA%E8%AF%BB%E8%A7%82%E6%B5%8B%20%C2%B7%20%E4%B8%8D%E4%BD%9C%E4%BA%A4%E6%98%93%E4%BE%9D%E6%8D%AE-8b949e?style=flat-square" alt="Signal">
+<!-- ── 核心大徽章（for-the-badge 醒目） ── -->
+<a href="./LICENSE"><img src="https://img.shields.io/badge/许可-禁止商用-critical?style=for-the-badge&logo=creativecommons&logoColor=white" alt="License"></a>
+<img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+<a href="https://github.com/shengjidaguai-china/Financial_Modeling/stargazers"><img src="https://img.shields.io/github/stars/shengjidaguai-china/Financial_Modeling?style=for-the-badge&logo=github&label=Stars&color=yellow" alt="Stars"></a>
+<a href="https://github.com/shengjidaguai-china/Financial_Modeling/forks"><img src="https://img.shields.io/github/forks/shengjidaguai-china/Financial_Modeling?style=for-the-badge&logo=github&label=Forks&color=blue" alt="Forks"></a>
+
+<br/><br/>
+
+<!-- ── 项目状态 ── -->
+<img src="https://img.shields.io/badge/版本-v2.0.0%20professional-1f6feb?style=flat-square" alt="Version">
+<img src="https://img.shields.io/badge/状态-研究阶段-d29922?style=flat-square" alt="Status">
+<img src="https://img.shields.io/badge/信号-只读观测%20·%20不作交易依据-8b949e?style=flat-square" alt="Signal">
+<img src="https://img.shields.io/badge/CLI-63%20命令-8250df?style=flat-square&logo=gnubash&logoColor=white" alt="CLI">
 
 <br/>
 
 <!-- ── 技术栈 ── -->
-<img src="https://img.shields.io/badge/Python-%E2%89%A53.8-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
-<img src="https://img.shields.io/badge/LightGBM-%E4%B8%BB%E5%8A%9B%E6%A8%A1%E5%9E%8B-025E8C?style=flat-square" alt="LightGBM">
+<img src="https://img.shields.io/badge/LightGBM-主力模型-025E8C?style=flat-square" alt="LightGBM">
 <img src="https://img.shields.io/badge/scikit--learn-ML-F7931E?style=flat-square&logo=scikitlearn&logoColor=white" alt="sklearn">
-<img src="https://img.shields.io/badge/pandas-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86-150458?style=flat-square&logo=pandas&logoColor=white" alt="pandas">
-<img src="https://img.shields.io/badge/NumPy-%E8%AE%A1%E7%AE%97-013243?style=flat-square&logo=numpy&logoColor=white" alt="numpy">
-<img src="https://img.shields.io/badge/FastAPI-%3A8800-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI">
-<img src="https://img.shields.io/badge/ONNX-%E5%AF%BC%E5%87%BA-005CED?style=flat-square&logo=onnx&logoColor=white" alt="ONNX">
+<img src="https://img.shields.io/badge/pandas-数据处理-150458?style=flat-square&logo=pandas&logoColor=white" alt="pandas">
+<img src="https://img.shields.io/badge/NumPy-计算-013243?style=flat-square&logo=numpy&logoColor=white" alt="numpy">
+<img src="https://img.shields.io/badge/FastAPI-:8800-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI">
+<img src="https://img.shields.io/badge/ONNX-导出-005CED?style=flat-square&logo=onnx&logoColor=white" alt="ONNX">
 
 <br/>
 
-<!-- ── 数据源与能力 ── -->
-<img src="https://img.shields.io/badge/%E6%95%B0%E6%8D%AE%E6%BA%90-Wind%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89-9e6a03?style=flat-square" alt="Wind">
-<img src="https://img.shields.io/badge/%E6%95%B0%E6%8D%AE%E6%BA%90-akshare-3fb950?style=flat-square" alt="akshare">
-<img src="https://img.shields.io/badge/%E6%95%B0%E6%8D%AE%E6%BA%90-%E8%85%BE%E8%AE%AF%E8%B4%A2%E7%BB%8F-3fb950?style=flat-square" alt="Tencent">
-<img src="https://img.shields.io/badge/%E5%85%9C%E5%BA%95-%E6%A8%A1%E6%8B%9F%E6%95%B0%E6%8D%AE%E4%B8%8D%E8%90%BD%E7%9B%98-8b949e?style=flat-square" alt="Simulation">
-<img src="https://img.shields.io/badge/CLI-63%20%E5%91%BD%E4%BB%A4-8250df?style=flat-square&logo=gnubash&logoColor=white" alt="CLI">
-<img src="https://img.shields.io/badge/%E6%B5%8B%E8%AF%95-78%20%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%96%87%E4%BB%B6-3fb950?style=flat-square&logo=pytest&logoColor=white" alt="Tests">
+<!-- ── 数据源（多市场） ── -->
+<img src="https://img.shields.io/badge/A股-akshare%20%2F%20腾讯-3fb950?style=flat-square" alt="A stock">
+<img src="https://img.shields.io/badge/美股日K-akshare-3fb950?style=flat-square" alt="US stock">
+<img src="https://img.shields.io/badge/海外期货-akshare-3fb950?style=flat-square" alt="US futures">
+<img src="https://img.shields.io/badge/美股期权-fdnpy-9e6a03?style=flat-square" alt="US options">
+<img src="https://img.shields.io/badge/外汇-akshare-3fb950?style=flat-square" alt="forex">
+<img src="https://img.shields.io/badge/Wind-可选-9e6a03?style=flat-square" alt="Wind">
 
 <br/>
 
-<!-- ── 美股扩展（akshare 免费 + fdnpy 期权） ── -->
-<img src="https://img.shields.io/badge/%E7%BE%8E%E8%82%A1%E6%97%A5K-akshare-3fb950?style=flat-square" alt="US stock">
-<img src="https://img.shields.io/badge/%E6%B5%B7%E5%A4%96%E6%9C%9F%E8%B4%A7-akshare-3fb950?style=flat-square" alt="US futures">
-<img src="https://img.shields.io/badge/%E7%BE%8E%E8%82%A1%E6%9C%9F%E6%9D%83-fdnpy-9e6a03?style=flat-square" alt="US options">
+<!-- ── 质量保障 ── -->
+<img src="https://img.shields.io/badge/ruff-passing-brightgreen?style=flat-square&logo=ruff&logoColor=white" alt="ruff">
+<img src="https://img.shields.io/badge/pytest-1542%20passed-brightgreen?style=flat-square&logo=pytest&logoColor=white" alt="pytest">
+<img src="https://img.shields.io/badge/测试-78%20文件-3fb950?style=flat-square" alt="Tests">
+<img src="https://img.shields.io/badge/防泄漏-已修复-58a6ff?style=flat-square" alt="Leak fix">
+<img src="https://img.shields.io/badge/离线复算-冻结快照-3fb950?style=flat-square" alt="Reproducible">
 
 <br/>
 
-<!-- ── GitHub 动态徽章 ── -->
-<a href="https://github.com/shengjidaguai-china/Financial_Modeling/stargazers"><img src="https://img.shields.io/github/stars/shengjidaguai-china/Financial_Modeling?style=flat-square&logo=github&label=Stars" alt="Stars"></a>
-<a href="https://github.com/shengjidaguai-china/Financial_Modeling/network/members"><img src="https://img.shields.io/github/forks/shengjidaguai-china/Financial_Modeling?style=flat-square&logo=github&label=Forks" alt="Forks"></a>
+<!-- ── GitHub 动态统计 ── -->
 <a href="https://github.com/shengjidaguai-china/Financial_Modeling/issues"><img src="https://img.shields.io/github/issues/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Issues" alt="Issues"></a>
-<img src="https://img.shields.io/github/last-commit/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Last%20Commit" alt="Last Commit">
-<img src="https://img.shields.io/github/repo-size/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Size" alt="Repo Size">
-<img src="https://img.shields.io/github/commit-activity/m/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Commits/m" alt="Commit Activity">
+<img src="https://img.shields.io/github/last-commit/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Last%20Commit&color=blue" alt="Last Commit">
+<img src="https://img.shields.io/github/repo-size/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Size&color=blueviolet" alt="Repo Size">
+<img src="https://img.shields.io/github/commit-activity/m/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Commits/m&color=blue" alt="Commit Activity">
+<img src="https://img.shields.io/github/languages/top/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Top%20Lang" alt="Top Language">
+<a href="https://github.com/shengjidaguai-china/Financial_Modeling/graphs/contributors"><img src="https://img.shields.io/github/contributors/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Contributors&color=orange" alt="Contributors"></a>
+<img src="https://img.shields.io/github/created-at/shengjidaguai-china/Financial_Modeling?style=flat-square&label=Created&color=slateblue" alt="Created At">
 
 </div>
 
