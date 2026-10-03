@@ -212,6 +212,8 @@ class PredictionEngine:
         self.feature_engineer = FeatureEngineer(config)
         # 每日刷新去重：同标的每进程至多尝试一次过期刷新（刷新无新数据也标记）
         self._refresh_attempted: set[str] = set()
+        # 预测缓存：键含数据指纹（最后日期+行数），新数据自动失效；错误读数不缓存
+        self._pred_cache: dict[tuple, dict[str, Any]] = {}
 
     def load_models(self, model_type: str = "lightgbm") -> None:
         """加载所有预测周期的模型。
@@ -382,9 +384,21 @@ class PredictionEngine:
             return fresh
         return df
 
+    # 预测缓存容量护栏：超过即全清、按需重算（键含数据指纹，正确性不受影响）
+    PRED_CACHE_MAX = 512
+
     def predict(self, symbol: str, horizon_name: str = "short_term") -> dict[str, Any]:
         """
-        预测指定标的的未来走势
+        预测指定标的的未来走势（带预测缓存）。
+
+        缓存键 = (symbol, horizon, 数据最后日期, 数据行数)：
+        - 键包含数据指纹 ⇒ 新数据入库/追加后键必然变化，结构上不可能返回过期预测；
+        - 只缓存成功读数（error 不缓存）⇒ 数据/模型修复后下次调用自动重算；
+        - 同进程重复请求（消费方重试 / 多端点复用同一读数）从秒级降为毫秒级。
+
+        背景（2026-10-03 实测）：数据管线加重（质量门 + 52 指标）后单周期推理
+        ~5.4s、26 标的全池 feed ≈ 7 分钟，下游 10s 客户端超时打不通正路径；
+        本缓存与下游批量超时提升共同恢复「服务态」决策源的可用性。
 
         Args:
             symbol: 标的代码
@@ -406,6 +420,26 @@ class PredictionEngine:
         if df is None or len(df) == 0:
             return {"error": f"无法获取 {symbol} 的数据"}
 
+        key = None
+        try:
+            last_date = str(pd.to_datetime(df["date"]).max().date())
+            key = (str(symbol), str(horizon_name), last_date, int(len(df)))
+        except Exception:  # noqa: BLE001 - 键构造失败只影响缓存，不影响正确性
+            key = None
+        if key is not None and key in self._pred_cache:
+            return self._pred_cache[key]
+
+        result = self._predict_with_df(symbol, horizon_name, horizon_days, model_key, df)
+
+        if key is not None and isinstance(result, dict) and "error" not in result:
+            if len(self._pred_cache) >= self.PRED_CACHE_MAX:
+                self._pred_cache.clear()
+            self._pred_cache[key] = result
+        return result
+
+    def _predict_with_df(self, symbol: str, horizon_name: str, horizon_days: int,
+                         model_key: str, df: Any) -> dict[str, Any]:
+        """无缓存的单周期推理计算体（取数与缓存由 predict 负责）。"""
         # 特征工程
         df_features = self.feature_engineer.transform(df, horizon_days)
         feature_cols = self.feature_engineer.get_feature_columns(df_features, horizon_days)

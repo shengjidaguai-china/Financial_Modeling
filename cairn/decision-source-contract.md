@@ -90,6 +90,18 @@ python main.py decision-feed --symbols-file ~/positions.txt --stdout
 
 原 `/api/v1/portfolio/summary` 亦已自动追加决策字段（向后兼容，旧消费方零改动）。
 
+**下游系统（独立仓）消费端状态（2026-10-03 升级交付）**：
+- 客户端 `get_decision_feed()` 优先打 `/api/v1/decision/feed`（校验 `contract_version`），
+  回退 `portfolio/summary`（亦为契约超集）→ 一期 batch 组合；全程 fail-open。
+- 批量端点超时分层 `batch_timeout=900s`：**实测 26 标的全池 feed ≈ 7 分钟**
+  （数据管线加重后单周期推理 ~5.4s；一期 10s 超时假设已被打破，属如实入库的回归发现）。
+  生产端配套加了 `PredictionEngine` 预测缓存（键含数据最后日期+行数，新数据自动失效、
+  error 不缓存；`tests/test_predictor_prediction_cache.py` 7 例）——同日重复调用毫秒级。
+- 快照（`signals_YYYY-MM-DD.json`）增量携带契约字段（一期键名保留）；信号卡与简报呈现
+  `advisory` 采纳建议与 `analytics.verdict` 有效性边界——**采纳建议 0 达标或 verdict
+  非 effective 时明示「信号仅作只读观测/风险预警，不作为仓位依据」**（把第三节纪律
+  变成下游展示层的内建行为，不再依赖下游自行记得）。交付记录见对接设计方案 §10。
+
 ## 六、交付形态投影（2026-09-16 追加）
 
 本节结论**不改**上面任何内容，只补「下游怎么把它读进去」。TradingView 侧两条近原生入口：
