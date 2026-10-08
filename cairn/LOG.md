@@ -2,6 +2,16 @@
 
 本文件按倒序记录项目的实质性进展——最新条目紧贴本行下方。每条保持简短——只写摘要与指针；结论沉淀到 `cairn/<topic>.md` 知识专题文档。
 
+## 2026-10-08 · CI 全绿（LOCAL-2 修复完成）
+
+- GitHub Actions CI 配置从零搭建到全绿，4 次迭代修复依赖缺失：
+  ① `pyyaml`/`joblib` 未列入 `requirements.txt` → 添加为核心依赖（22 个收集错误）；
+  ② `fastapi`/`pydantic`/`lightgbm`/`scikit-learn` 缺失 → CI 安装步骤补充；
+  ③ `httpx` 缺失（`starlette.testclient` 依赖）→ CI 安装步骤补充。
+- 最终结果：test job ✓ 396 passed / 0 failed，lint job ✓（194 ruff 警告但 `continue-on-error`）。
+- 提交链：`af7e111` → `8b016a3` → `20e3ec7` → `3336c81`（全已推送 origin + github）。
+- 指针：`.github/workflows/ci.yml`、`requirements.txt`。
+
 ## 2026-10-08 · Issue #55 正式关闭（用户确认 TrendCast = 只读观测）
 
 - 9 轮排查一致结论（信号无决策增量），用户 2026-10-08 确认关闭。
