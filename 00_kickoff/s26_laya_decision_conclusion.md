@@ -173,14 +173,14 @@ qfq 与 recent_revision 不阻断**快照基**对照；硬分叉（600519.SH 等
 
 | 任务 | 交付 | 状态 |
 |:---:|:---|:---:|
-| T26.1 | 准入评估（许可证 / 依赖重量 / py3.8 CI 离线） | 🔶 人工（评估器已交付，采纳待定） |
+| T26.1 | 准入评估（许可证 / 依赖重量 / py3.8 CI 离线） | ✅ **用户批准（2026-10-08）** |
 | T26.2 | `src/eval/laya_typed_decision.py`：只读适配器（挂报告层） | ✅ |
 | T26.3 | 离线对照（Laya vs LightGBM 概率） | ✅ |
 | T26.4 | 级联冒烟（只留 Laya 的本地降级路径） | ✅ |
 | T26.6 | 冻结快照回放对账（`src/eval/laya_frozen_replay.py`，接入前必做） | ✅ |
 | T26.7 | 对照判据预注册（`src/eval/laya_contrast_prereg.py`，规则先于跑数） | ✅ |
 | T26.8 | 对照数据基冻结化 + 分歧诊断（`load_frozen_frames`，跨机实测更正） | ✅ |
-| T26.5 | 是否接入 / 是否仅评估 | 🔶 人工 |
+| T26.5 | 是否接入 / 是否仅评估 | ✅ **保留为只读评估臂（2026-10-08）** |
 
 CLI：`python main.py laya-decision [--laya-weights ... --decided-by ... --reason ...]`
       `python main.py laya-replay`（T26.6）
@@ -199,3 +199,11 @@ CLI：`python main.py laya-decision [--laya-weights ... --decided-by ... --reaso
   不给"没证明"的结论；
 - **判定规则先于跑数**（T26.7）：T26.3 的通过/不通过规则在 T26.1 之前冻结（指纹钉死），
   无预注册规则一律不判 `pass`；规则改动须递版本号并重跑。
+## 七、人工签字记录（2026-10-08）
+
+| 检查点 | 决策 | decided_by | 日期 | 理由 |
+|:---:|:---|:---:|:---:|:---|
+| T26.1 | **批准** — 接受 Laya 重型依赖（~1.7GB fp32 / ~2GB RAM）+ 许可证条款 | user | 2026-10-08 | 批准 T26.1 依赖准入 |
+| T26.5 | **保留为只读评估臂** — 整条链路保留，仅作只读评估（affects_gate/affects_signal 恒 False） | user | 2026-10-08 | 保留为只读评估臂 |
+
+S26 全部任务完成，阶段状态 → `completed`。

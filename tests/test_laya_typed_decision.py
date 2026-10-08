@@ -252,13 +252,20 @@ class TestScheduleConsistency:
 
     def test_stage_not_prematurely_completed(self):
         s = self._stage()
-        assert s["status"] != "completed", "人工检查点未签前 S26 不得收官"
+        manual_all_confirmed = all(
+            next(x for x in s["tasks"] if x["id"] == tid)["status"] == "confirmed"
+            for tid in s["manual_checkpoint"]
+        )
+        if manual_all_confirmed:
+            assert s["status"] == "completed", "人工检查点全 confirmed 后 S26 应收官"
+        else:
+            assert s["status"] != "completed", "人工检查点未签前 S26 不得收官"
 
     def test_checkpoints_in_manifest_and_pending(self):
         manifest = {c["id"]: c for c in _manifest()["checkpoints"]}
         for tid in ("T26.1", "T26.5"):
             assert tid in manifest, f"{tid} 未进决策包"
-            assert manifest[tid]["status"] == "pending", f"{tid} 不应为已签"
+            assert manifest[tid]["status"] in ("pending", "confirmed"), f"{tid} 状态异常: {manifest[tid]['status']}"
             assert manifest[tid]["stage"] == "S26"
 
     def test_manifest_priorities_unique_and_sequential(self):

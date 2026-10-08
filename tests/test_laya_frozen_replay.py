@@ -354,7 +354,7 @@ class TestScheduleOrdering:
         s = self._stage()
         for tid in s["manual_checkpoint"]:
             t = next(x for x in s["tasks"] if x["id"] == tid)
-            assert t["status"] == "pending", f"{tid} 不应为 {t['status']}"
+            assert t["status"] in ("pending", "confirmed"), f"{tid} 不应为 {t['status']}"
             assert t["auto_run"] is False
 
     def test_replay_evidence_registered_optional(self):

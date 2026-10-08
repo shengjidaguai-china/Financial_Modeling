@@ -627,10 +627,17 @@
       "blocks": [
         "Laya 只读接入是否开工（依赖重量 / 许可证 / py3.8 CI 离线兼容）"
       ],
-      "status": "pending",
+      "status": "confirmed",
       "issue": "https://cnb.cool/yuppiez328/Financial_Modeling/-/issues/66",
       "round": "J1",
       "phase": "admission",
+      "decision": "keep",
+      "decision_basis": "用户指令（2026-10-08）「批准 T26.1 依赖准入」= 接受 Laya 重型依赖代价（~1.7GB fp32 / ~2GB RAM）+ 许可证条款",
+      "script_must": "确认接受 Laya 重型依赖：准许 Laya 接入；strategy_gate 逐字段零改动，affects_gate 恒为 false",
+      "rationale": "Laya（Convai 开放权重）给类型化决策 + 校准置信度、可本地跑 ⇒ 补契约层缺失的只读第二决策源；T26.6/T26.7 已证明对照可离线复算 + 判定规则先冻结，依赖代价可接受",
+      "scope": "确认 keep（接受依赖准入）；不含门禁/阈值/超参变更，strategy_gate 零改动",
+      "confirmed_by": "yuppiez328",
+      "confirmed_at": "2026-10-08T11:24:12+00:00",
       "out_of_scope": [
         "签字仅确认「是否接受依赖代价 + 许可证」本身，不含门禁/阈值/超参的任何变更",
         "strategy_gate 逐字段零改动，affects_gate 恒为 false",
@@ -657,10 +664,17 @@
       "blocks": [
         "Laya 只读接入的最终保留决策"
       ],
-      "status": "pending",
+      "status": "confirmed",
       "issue": "https://cnb.cool/yuppiez328/Financial_Modeling/-/issues/66",
       "round": "J1",
       "phase": "decision",
+      "decision": "keep",
+      "decision_basis": "用户指令（2026-10-08）「保留为只读评估臂」= 保留整条 Laya 链路，仅作只读评估",
+      "script_must": "确认保留为只读评估臂：整条链路保留，affects_gate/affects_signal 恒 False，不影响信号/门禁",
+      "rationale": "Laya 作为只读第二决策源 / 交叉验证臂有结构价值（校准置信度 + 类型化决策）；真实权重未接入时对照记 unverifiable + 止损，不编造效果",
+      "scope": "确认 keep（保留为只读评估臂）；不含门禁/阈值/超参变更，strategy_gate 零改动",
+      "confirmed_by": "yuppiez328",
+      "confirmed_at": "2026-10-08T11:24:12+00:00",
       "out_of_scope": [
         "签字仅确认保留/取消本身，不含门禁/阈值/超参的任何变更",
         "strategy_gate 逐字段零改动，affects_gate 恒为 false",

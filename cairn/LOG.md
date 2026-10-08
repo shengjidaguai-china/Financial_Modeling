@@ -2,6 +2,16 @@
 
 本文件按倒序记录项目的实质性进展——最新条目紧贴本行下方。每条保持简短——只写摘要与指针；结论沉淀到 `cairn/<topic>.md` 知识专题文档。
 
+## 2026-10-08 · S26 Laya 只读接入评估完成（T26.1/T26.5 用户签字）
+
+- J 轮 S26 全部任务完成。T26.2~T26.4/T26.6~T26.8 此前已自动交付；今日用户对两个
+  人工检查点签字：**T26.1 批准**（接受 Laya 重型依赖 ~1.7GB / ~2GB RAM + 许可证条款）、
+  **T26.5 保留为只读评估臂**（整条链路保留，affects_gate/affects_signal 恒 False）。
+- 更新：`schedule/plan.json` S26 → completed、`00_kickoff/s26_laya_decision_conclusion.md` §七
+  签字记录、`cairn/ROADMAP.md` 当前焦点 + 里程碑 checkbox。
+- 纪律不变：Laya 仅作只读第二决策源 / 交叉验证臂，不进信号路径、CI 离线、不编造效果。
+- 指针：`00_kickoff/s26_laya_decision_conclusion.md`、`cairn/laya-readonly-admission.md`。
+
 ## 2026-10-03 · 决策源契约消费升级交付（下游系统侧）+ 预测缓存（生产端阻塞修复）
 
 - 按排期推进「为下游系统提供信号决策源」（对接设计方案 v1.2 §10）：下游消费端从一期
