@@ -2,6 +2,17 @@
 
 本文件按倒序记录项目的实质性进展——最新条目紧贴本行下方。每条保持简短——只写摘要与指针；结论沉淀到 `cairn/<topic>.md` 知识专题文档。
 
+## 2026-10-08 · K 轮排期写入 plan.json（S27/S28/S29）
+
+- 三个独立方向追加到 `schedule/plan.json`（26 → 29 stages）：
+  **S27（K1）** 信号区分度排查（特征信息量审计 + 标的池去共线 + 标签口径对照，T27.4 人工检查点）；
+  **S28（K2）** 池级组合回测器全池口径（38 标的 × 三臂）；
+  **S29（K3）** 波动/回撤预警项目（朴素 trailing-vol 基线 + CLI）。
+- T27.4 人工检查点同步到 `manual_checkpoints.json`（priority 19，K1 轮）；
+  evidence 声明为可选（产出尚未生成）。
+- ROADMAP 开放问题 #2/#4/#6 标记「已排期」，#7（CI）标记已修复；里程碑补 K 轮 checkbox。
+- 396 tests passed。指针：`schedule/plan.json`、`schedule/manual_checkpoints.json`、`cairn/ROADMAP.md`。
+
 ## 2026-10-08 · CI 全绿（LOCAL-2 修复完成）
 
 - GitHub Actions CI 配置从零搭建到全绿，4 次迭代修复依赖缺失：
