@@ -35,6 +35,7 @@ EXPECTED_IDS = [
 # I 轮（Issue #54）规划期检查点：签字一条、确认一条，phase 随之 planning → decision
 I_ROUND_IDS = ["T21.4", "T22.4", "T23.4", "T24.4", "T25.4"]
 J_ROUND_IDS = ["T26.1", "T26.5"]
+K_ROUND_IDS = ["T27.4"]
 DECISION_WORDS = {"keep", "defer", "reject", "cancel", "moot_by_convention"}
 # 本轮确认覆盖的阶段（G1~G5 + H1~H5）
 CONFIRMED_STAGES = ["S11", "S12", "S13", "S14", "S15", "S16", "S17", "S18", "S19", "S20"]
@@ -117,8 +118,8 @@ class TestConfirmationCoverage:
         assert set(EXPECTED_IDS) <= set(confirmed), (
             f"G/H 决策包出现缺失: {sorted(set(EXPECTED_IDS) - set(confirmed))}")
         extra = set(confirmed) - set(EXPECTED_IDS)
-        assert extra <= set(I_ROUND_IDS) | set(J_ROUND_IDS), (
-            f"确认集合出现未知条目: {sorted(extra - set(I_ROUND_IDS) - set(J_ROUND_IDS))}")
+        assert extra <= set(I_ROUND_IDS) | set(J_ROUND_IDS) | set(K_ROUND_IDS), (
+            f"确认集合出现未知条目: {sorted(extra - set(I_ROUND_IDS) - set(J_ROUND_IDS) - set(K_ROUND_IDS))}")
         for cp in _manifest()["checkpoints"]:
             if cp["id"] in extra:
                 assert cp.get("phase") in ("decision", "admission"), (
