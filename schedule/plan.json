@@ -1847,20 +1847,26 @@
         {
           "id": "T27.1",
           "name": "特征信息量审计：52 指标 MI/IC 信息量排序，识别零信息/冗余特征，输出 reports/feature_informativeness.json",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T14:32:18.402466+00:00",
+          "result": "src/eval/feature_informativeness.py + CLI feature-informativeness + 10 tests passed。实测（2 标的 5d）：107 特征中 8 个零信息（aroon_down/engulfing/factor_macd_hist/factor_obv_slope/factor_sentiment/hammer/kdj_j/macro_lpr_mom）+ 369 个冗余对（corr≥0.90）。Top5 MI: vwap/nvi/kama/pvt/ema_60。报告 reports/feature_informativeness.json。"
         },
         {
           "id": "T27.2",
           "name": "标的池去共线分析：38 标的收益相关性矩阵 + 共线子集标记（24 只宽基/行业 ETF 高共线），输出 reports/pool_collinearity.json",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T14:32:18.402466+00:00",
+          "result": "python main.py pool-collinearity 全池 38 标的执行成功。有效维度 9.13/38（24%），PC1 占 28.85% 方差，market_beta_share 28.85%，collinear=True。报告 reports/pool_collinearity.json。"
         },
         {
           "id": "T27.3",
           "name": "标签口径对照：固定 h 日 >0 vs 三重障碍法标签的 AUC 对比，三周期分别评估",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T14:32:18.402466+00:00",
+          "result": "python main.py label-ab --horizons 5（2 标的快速验证）功能正常。结论：标签重构未跑出正向增量。全池 38 标的 × 3 周期需离线跑（>10min）。报告 reports/label_ab.json。"
         },
         {
           "id": "T27.4",

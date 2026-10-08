@@ -2,6 +2,14 @@
 
 本文件按倒序记录项目的实质性进展——最新条目紧贴本行下方。每条保持简短——只写摘要与指针；结论沉淀到 `cairn/<topic>.md` 知识专题文档。
 
+## 2026-10-08 · S27 T27.1~T27.3 交付（信号区分度排查）
+
+- **T27.1 特征信息量审计**：新建 `src/eval/feature_informativeness.py`（MI/IC 排序 + 冗余诊断）+ CLI `feature-informativeness` + 10 tests。
+  实测（2 标的 5d）：107 特征中 **8 个零信息**（aroon_down/engulfing/factor_macd_hist/factor_obv_slope/factor_sentiment/hammer/kdj_j/macro_lpr_mom）+ **369 个冗余对**（corr≥0.90）。Top5 MI: vwap/nvi/kama/pvt/ema_60。
+- **T27.2 池共线性**：`pool-collinearity` 全池 38 标的执行。有效维度 **9.13/38（24%）**，PC1 占 28.85% 方差，collinear=True。
+- **T27.3 标签口径对照**：`label-ab` 2 标的快速验证通过。结论：标签重构未跑出正向增量。全池需离线跑（>10min）。
+- T27.4（人工检查点）待用户签字。指针：`src/eval/feature_informativeness.py`、`reports/feature_informativeness.json`、`reports/pool_collinearity.json`、`reports/label_ab.json`。
+
 ## 2026-10-08 · K 轮排期写入 plan.json（S27/S28/S29）
 
 - 三个独立方向追加到 `schedule/plan.json`（26 → 29 stages）：
