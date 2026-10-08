@@ -144,6 +144,18 @@ features:
   # 启用宏观指标特征 (CPI/PMI/GDP)
   macro_enabled: true
 
+  # S27/K1 特征信息量审计排除列表（T27.4 用户签字 2026-10-08）：
+  # 8 个零信息特征 + 27 个高冗余对中的低 MI 方（corr≥0.90，贪心去低 MI 方，保护 top-30 MI）。
+  # 107 → 72 特征。affects_gate=false，只影响特征集，不影响门禁/信号路径。
+  feature_exclusions: [
+    "aroon_down", "atr", "boll_pct_b", "boll_pos", "cci", "cmo", "engulfing",
+    "factor_boll_revert", "factor_cmf", "factor_ema_slope", "factor_kdj_score",
+    "factor_macd_hist", "factor_obv_slope", "factor_roc", "factor_rsi_score",
+    "factor_sentiment", "hammer", "kdj_j", "kdj_k", "ma_20_ratio", "macd",
+    "macro_gdp_latest", "macro_lpr_latest", "macro_lpr_mom", "macro_pmi_latest",
+    "pivot", "r1", "r2", "ret_10", "rsi", "s2", "stddev", "stoch_d", "tsi", "willr",
+  ]
+
   # 基础技术指标
   technical:
     ma_windows: [5, 10, 20, 60]

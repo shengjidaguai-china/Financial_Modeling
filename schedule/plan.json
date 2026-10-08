@@ -1828,7 +1828,7 @@
       "id": "S27",
       "round": "K1",
       "name": "信号区分度排查（K1：特征信息量审计 + 标的池去共线 + 标签口径对照）",
-      "status": "pending",
+      "status": "completed",
       "scheduled_dates": "2026-10-27 ~ 2026-11-02",
       "source": "K 轮 · K1（ROADMAP 开放问题 #4：信号区分度弱）",
       "depends_on": [
@@ -1871,12 +1871,19 @@
         {
           "id": "T27.4",
           "name": "汇总诊断报告 + 下一步建议（人工检查点：是否缩池/删特征/换标签口径）",
-          "status": "pending",
-          "auto_run": false
+          "status": "confirmed",
+          "auto_run": false,
+          "completed_at": "2026-10-08T14:50:56.954015+00:00",
+          "result": "用户决策（2026-10-08）：删除 35 个零信息/冗余特征（8 zero-info + 27 redundant pairs 低 MI 方）。107 → 72 特征。config_pro.yaml feature_exclusions + preprocessor.get_feature_columns 排除机制。affects_gate=false。",
+          "confirmed_by": "yuppiez328",
+          "confirmed_at": "2026-10-08T14:50:56.954015+00:00",
+          "decision": "keep"
         }
       ],
       "affects_gate": false,
-      "note": "K 轮 K1：排查信号区分度弱的根因。已知读数：AUC ≈ 0.50~0.54、置信度 |composite-0.5| ≤0.02、advisory_consumable 0/38。方向：特征信息量、标签口径、池内标的共性。affects_gate=false，只读排查。"
+      "note": "K 轮 K1：排查信号区分度弱的根因。已知读数：AUC ≈ 0.50~0.54、置信度 |composite-0.5| ≤0.02、advisory_consumable 0/38。方向：特征信息量、标签口径、池内标的共性。affects_gate=false，只读排查。",
+      "completed_at": "2026-10-08T14:50:56.954015+00:00",
+      "result": "S27 全部任务完成。T27.1~T27.3 自动交付；T27.4 于 2026-10-08 用户签字 confirmed：删除 35 个零信息/冗余特征（107→72）。"
     },
     {
       "id": "S28",

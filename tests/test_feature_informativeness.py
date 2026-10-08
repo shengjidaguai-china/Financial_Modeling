@@ -127,6 +127,44 @@ class TestBuildReport:
         assert len(report["redundant_pairs"]) >= 1
 
 
+class TestFeatureExclusion:
+    """T27.4 特征排除机制守卫。"""
+
+    def test_config_has_feature_exclusions(self):
+        import yaml
+        config_path = PROJECT_ROOT / "configs" / "config_pro.yaml"
+        config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+        exclusions = config.get("features", {}).get("feature_exclusions", [])
+        assert isinstance(exclusions, list) and len(exclusions) > 0, (
+            "feature_exclusions 未配置或为空"
+        )
+
+    def test_excluded_features_not_in_feature_columns(self):
+        import yaml
+        from src.data.preprocessor import FeatureEngineer
+
+        config = yaml.safe_load(
+            (PROJECT_ROOT / "configs" / "config_pro.yaml").read_text(encoding="utf-8")
+        )
+        fe = FeatureEngineer(config)
+        exclusions = set(config["features"]["feature_exclusions"])
+        df = pd.DataFrame({
+            "date": [1], "close": [100], "open": [100], "high": [100],
+            "low": [100], "volume": [1000],
+            "rsi": [50], "atr": [5], "vwap": [100], "target_5d": [1],
+        })
+        cols = fe.get_feature_columns(df, 5)
+        for ex in ["rsi", "atr"]:
+            assert ex not in cols, f"{ex} 应被排除"
+
+    def test_exclusion_count_matches_audit(self):
+        import yaml
+        config_path = PROJECT_ROOT / "configs" / "config_pro.yaml"
+        config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
+        exclusions = config["features"]["feature_exclusions"]
+        assert len(exclusions) == 35, f"排除列表应为 35 个，实际 {len(exclusions)}"
+
+
 class TestPlanRegistration:
     """T27.1 排期登记守卫。"""
 

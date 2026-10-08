@@ -699,10 +699,10 @@
       "blocks": [
         "信号区分度排查后的配置变更决策（是否缩池/删特征/换标签口径）"
       ],
-      "status": "pending",
+      "status": "confirmed",
       "round": "K1",
-      "phase": "investigation",
-      "scope": "排查结果只读报告，不影响信号/门禁；配置变更决策待人工签字",
+      "phase": "decision",
+      "scope": "删除零信息/冗余特征；不影响门禁/信号路径，affects_gate=false",
       "out_of_scope": [
         "排查阶段不改动 strategy_gate / 信号路径 / 门禁阈值",
         "affects_gate 恒为 false",
@@ -711,7 +711,13 @@
       "boundary": [
         "strategy_gate 逐字段零改动",
         "affects_gate 恒为 false"
-      ]
+      ],
+      "confirmed_by": "yuppiez328",
+      "confirmed_at": "2026-10-08T14:50:56.954015+00:00",
+      "decision": "keep",
+      "decision_basis": "用户指令（2026-10-08）「删零信息/冗余特征」= 删除 35 个特征（8 zero-info + 27 redundant 低 MI 方），107→72",
+      "script_must": "确认特征排除机制生效：config feature_exclusions + get_feature_columns 过滤",
+      "rationale": "8 个零信息特征 MI<0.001 + 369 个冗余对（corr≥0.90）；删除低 MI 方保留 top-30 MI 特征"
     }
   ],
   "scope_note": "G 轮（S11~S15，Issue #29）与 H 轮（S16~S20，Issue #40）人工检查点统一收口：H 轮自动任务已全部交付（收口字段见 plan.json 各阶段 closing），H 轮人工检查点**全部进清单**——至此再无「已交付但未登记」；11 项均已由用户指令于 Issue #40 确认（确认对象 = 现状默认值）。",

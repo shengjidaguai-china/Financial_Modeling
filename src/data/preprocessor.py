@@ -150,6 +150,10 @@ class FeatureEngineer:
         避免"新增了一种标签列名就静默泄漏"（历史坑见类常量注释）。
         """
         exclude = {"date", "open", "high", "low", "close", "volume"}
+        config_exclusions = set(
+            (self.config.get("features", {}) or {}).get("feature_exclusions", []) or []
+        )
+        exclude |= config_exclusions
         cols = [
             c
             for c in df_features.columns

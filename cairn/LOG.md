@@ -2,6 +2,15 @@
 
 本文件按倒序记录项目的实质性进展——最新条目紧贴本行下方。每条保持简短——只写摘要与指针；结论沉淀到 `cairn/<topic>.md` 知识专题文档。
 
+## 2026-10-08 · S27 完成（信号区分度排查 + 特征排除）
+
+- **T27.4 用户签字**：删除 35 个零信息/冗余特征（8 zero-info + 27 redundant pairs 低 MI 方），107 → 72 特征。
+  实现：`config_pro.yaml` `feature_exclusions` 列表 + `preprocessor.get_feature_columns` 排除机制 + 3 个守卫测试。
+- S27 全部任务完成（T27.1~T27.3 自动交付 + T27.4 confirmed）。
+  主读数：8 个零信息特征（aroon_down/engulfing/hammer/kdj_j/factor_sentiment 等）+ 369 个冗余对 + 池有效维度 9.13/38（24%）。
+  标签口径对照（三重障碍 vs 固定 h 日）：未跑出正向增量。
+- affects_gate=false，strategy_gate 零改动。指针：`src/eval/feature_informativeness.py`、`configs/config_pro.yaml`。
+
 ## 2026-10-08 · S27 T27.1~T27.3 交付（信号区分度排查）
 
 - **T27.1 特征信息量审计**：新建 `src/eval/feature_informativeness.py`（MI/IC 排序 + 冗余诊断）+ CLI `feature-informativeness` + 10 tests。
