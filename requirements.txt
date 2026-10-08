@@ -3,6 +3,8 @@ akshare>=1.12.0
 pandas>=2.0.0
 numpy>=1.24.0
 pyarrow>=12.0.0
+pyyaml>=6.0
+joblib>=1.3.0
 
 # 可选依赖（缺省不安装，缺失时对应命令明确报错不静默）
 # lightgbm>=4.0.0      # 训练/评估/tune/confidence（sklearn 降级可用）
