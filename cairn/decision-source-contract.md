@@ -151,3 +151,36 @@ Pine 只能读表结构 → JSON 必须带**列字典**（`columns[].id` 与列�
 
 **不关闭的部分**：信号区分度弱（AUC ≈ 0.50~0.54）作为**已知限制**保留，
 是否在 K 轮继续排查属人工决策（见 ROADMAP K 轮方向）。
+## 八、下游 `_aggregate` 对齐指南（2026-10-08）
+
+**问题**：下游 TradingView 仓自建 `trendcast_signal_source._aggregate` 使用
+`short 0.2 / mid 0.5 / long 0.3` 权重 + `up_prob > 0.6 → BUY` / `< 0.4 → SELL` 硬编码阈值，
+与 16_ 侧契约出口的 `0.30 / 0.35 / 0.35` 权重 + `advisory.recommended_threshold = 0.20` 不一致。
+同一份预测在不同链路上被翻译成不同口径。
+
+**替换映射**：
+
+| 下游自建（旧） | 契约字段（新） | 说明 |
+|---|---|---|
+| `_aggregate(probs, weights={0.2,0.5,0.3})` | `feed.aggregate.composite_score` | 净看涨概率 ∈ [0,1]，权重已由生产端归一 |
+| 自行 `score * 2 - 1` | `feed.aggregate.composite_signed` | ∈ [-1,1]，正=看多 |
+| `up_prob > 0.6 → BUY` | `feed.aggregate.composite_score >= feed.advisory_config.recommended_threshold` | 门槛由生产端出口，非硬编码 |
+| `< 0.4 → SELL` | `feed.aggregate.composite_score < (1 - feed.advisory_config.recommended_threshold)` | 对称下限 |
+| `direction == "看涨" ? p : 1-p` | `feed.horizons.<h>.net_up_probability` | 逐周期净看涨概率，无需判断方向字符串 |
+| `abs(up_prob - 0.5) * 2` | `feed.horizons.<h>.uncertainty` 或 `1 - abs(composite_signed)` | 命名的置信度/不确定度字段 |
+| 自行权重硬编码 | `feed.aggregate.weights_used` / `feed.aggregate.weights_config` | 权重显式随附，可审计 |
+
+**迁移步骤**：
+
+1. **消费契约**：用 `get_decision_feed()`（已交付，2026-10-03）获取 `decision-feed/1` 契约；
+2. **替换聚合**：删除 `_aggregate` 函数，直接读 `feed.aggregate.composite_score` / `composite_signed`；
+3. **替换阈值**：删除 `0.6/0.4` 硬编码，改读 `feed.advisory_config.recommended_threshold`；
+4. **替换方向判断**：删除 `direction == "看涨"` 逻辑，直接用 `net_up_probability`；
+5. **验证**：对比迁移前后信号输出，确认 `composite_score` 与原 `_aggregate` 输出的差异仅来自权重口径（0.30/0.35/0.35 vs 0.2/0.5/0.3），非 bug。
+
+**注意事项**：
+- `position_role = observer` / `affects_gate = false` — 信号仅作只读观测，不作为仓位依据（§七约定）；
+- `advisory_consumable` 0/38 — 当前全部信号未达采纳门槛，这是**如实挡住**而非缺陷；
+- `coverage < 1.0` 时表示有周期缺失，`missing_horizons` 列出缺失项 — 不补 0.5；
+- 权重口径变更（0.2/0.5/0.3 → 0.30/0.35/0.35）会改变信号输出 — 这是**对齐**而非 bug，
+  原权重是下游自定、无依据；新权重由生产端出口、可审计。
