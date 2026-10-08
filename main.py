@@ -4575,6 +4575,7 @@ def build_parser() -> argparse.ArgumentParser:
         "decision-feed", "tv-export", "pool-collinearity", "model-improve",
         "regime-signal", "edge-check", "ablation", "risk-signal", "laya-decision",
         "laya-replay", "laya-prereg", "feature-informativeness",
+        "pool-backtest-baseline",
         "gate", "gate-diagnose", "factors", "factor-model",
         "stream", "intraday", "consistency", "risk-advice",
     ], help="执行命令")
@@ -4817,6 +4818,36 @@ def run_feature_informativeness_cmd(config: dict, symbols: list[str] | None = No
     _record_trial(config, "feature-informativeness", {
         "n_features": report.get("n_features", 0),
         "n_symbols": len(report.get("symbols", [])),
+    })
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    return report
+
+
+def run_pool_backtest_baseline_cmd(config: dict, symbols: list[str] | None = None) -> dict:
+    """池级组合回测器全池口径（S28 / K2）：38 标的 × 三臂全池组合回测。
+
+    只产出证据，affects_gate=False：不改门禁。
+    落盘 reports/pool_backtest_baseline.json。
+    """
+    from src.eval.pool_backtest_baseline import build_report
+
+    logger.info("执行全池组合回测基线")
+    symbols = symbols or _config_symbols(config)
+    data = _load_price_frames(config, symbols)
+
+    if not data:
+        logger.error("[pool-backtest-baseline] 无行情数据")
+        return {"available": False, "reason": "无行情数据"}
+
+    report = build_report(data)
+    out_dir = Path("reports")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "pool_backtest_baseline.json"
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    report["report_path"] = str(path)
+    _record_trial(config, "pool-backtest-baseline", {
+        "n_symbols": report.get("n_symbols_input", 0),
+        "available": report.get("available", False),
     })
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return report
@@ -5384,6 +5415,9 @@ def main():
         run_feature_informativeness_cmd(
             config, symbols=_cli_symbols(args),
             horizons=_parse_horizons(getattr(args, "horizons", None)))
+    elif args.command == "pool-backtest-baseline":
+        run_pool_backtest_baseline_cmd(
+            config, symbols=_cli_symbols(args))
     elif args.command == "model-improve":
         _mh = None
         _raw_mh = getattr(args, "horizons", None)
