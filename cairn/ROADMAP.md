@@ -115,8 +115,9 @@ T26.2~T26.4/T26.6~T26.8 自动交付；T26.1（重型依赖 ~1.7GB + 许可证�
       （2026-10-08 完成；详见 `src/eval/feature_informativeness.py`）
 - [x] **K 轮 S28（池级组合回测器全池口径）**：38 标的 × 三臂全池组合回测
       （2026-10-08 完成；等权臂年化 15.02% Sharpe 0.92；详见 `src/eval/pool_backtest_baseline.py`）
-- [ ] **K 轮 S29（波动/回撤预警项目）**：朴素 trailing-vol 基线 + 预警报告 + CLI
-      （已排期 2026-11-10~11-16）
+- [x] **K 轮 S29（波动/回撤预警项目）**：朴素 trailing-vol 基线产品化 + 预警报告 + CLI
+      （2026-10-09 完成；`python main.py risk-alert` → `reports/risk_alert.json`；
+      详见 `src/eval/risk_alert.py`，18 个守卫测试）
 
 ## 开放问题
 
@@ -133,7 +134,7 @@ T26.2~T26.4/T26.6~T26.8 自动交付；T26.1（重型依赖 ~1.7GB + 许可证�
    池内标的共性（38 只里 24 只是宽基/行业 ETF，彼此高度共线）。
 5. **TradingView 契约字段对齐（K 轮候选）**：是否改用契约字段（`net_up_probability` / `aggregate`）
    替代自行 `_aggregate`（0.2/0.5/0.3）与 `0.6/0.4` 硬编码阈值 —— 动的是下游口径。
-6. **波动/回撤预警项目（K 轮 S29，**已排期 2026-11-10~11-16**）**：用朴素 trailing-vol 基线即可（IC 0.69~0.75），
-   不必为模型输出立项。
+6. ~~**波动/回撤预警项目（K 轮 S29）**~~：已完成（2026-10-09）——朴素 trailing-vol 基线
+   产品化，`python main.py risk-alert`，纯价格驱动只读预警。
 7. ~~**CI 修复（LOCAL-2）**~~：已修复（2026-10-08）——GitHub Actions CI 全绿
    （test + lint），4 次迭代修复依赖缺失（pyyaml/joblib/fastapi/pydantic/lightgbm/httpx）。

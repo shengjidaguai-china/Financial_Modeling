@@ -4559,6 +4559,7 @@ def build_parser() -> argparse.ArgumentParser:
                                                    # 状态分层含三分 + 趋势/盘整二分（binary）
   python main.py ablation                  # 特征集 × 模型族联合消融（唯一记分板 = 净超额 + 臂间配对 t）
   python main.py risk-signal               # 风险预测力检验：模型输出 vs 朴素波动基线的增量（决定"风险预警"是否值得立项）
+  python main.py risk-alert                # 波动/回撤预警：朴素 trailing-vol 基线产品化（纯价格驱动，只读预警）
         """,
     )
     parser.add_argument("command", choices=[
@@ -4575,7 +4576,7 @@ def build_parser() -> argparse.ArgumentParser:
         "decision-feed", "tv-export", "pool-collinearity", "model-improve",
         "regime-signal", "edge-check", "ablation", "risk-signal", "laya-decision",
         "laya-replay", "laya-prereg", "feature-informativeness",
-        "pool-backtest-baseline",
+        "pool-backtest-baseline", "risk-alert",
         "gate", "gate-diagnose", "factors", "factor-model",
         "stream", "intraday", "consistency", "risk-advice",
     ], help="执行命令")
@@ -4850,6 +4851,40 @@ def run_pool_backtest_baseline_cmd(config: dict, symbols: list[str] | None = Non
         "available": report.get("available", False),
     })
     print(json.dumps(report, ensure_ascii=False, indent=2))
+    return report
+
+
+def run_risk_alert_cmd(config: dict, symbols: list[str] | None = None) -> dict:
+    """波动/回撤预警项目（S29 / K3）：朴素 trailing-vol 基线产品化。
+
+    只读预警，affects_gate=False：不改门禁 / 权重 / 池 / 配置。
+    纯价格驱动，无模型输出（Issue #55 结论：朴素基线 IC 0.69~0.75 已够用）。
+    落盘 reports/risk_alert.json。
+    """
+    from src.eval.risk_alert import build_report
+
+    logger.info("执行波动/回撤预警（朴素 trailing-vol 基线）")
+    symbols = symbols or _config_symbols(config)
+    data = _load_price_frames(config, symbols)
+
+    if not data:
+        logger.error("[risk-alert] 无行情数据")
+        return {"available": False, "reason": "无行情数据"}
+
+    report = build_report(data)
+    out_dir = Path("reports")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "risk_alert.json"
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2, default=str),
+                    encoding="utf-8")
+    report["report_path"] = str(path)
+    _record_trial(config, "risk-alert", {
+        "n_symbols_input": report.get("n_symbols_input", 0),
+        "n_symbols_available": report.get("n_symbols_available", 0),
+        "available": report.get("available", False),
+        "n_elevated_or_higher": report.get("n_elevated_or_higher", 0),
+    })
+    print(json.dumps(report, ensure_ascii=False, indent=2, default=str))
     return report
 
 
@@ -5417,6 +5452,9 @@ def main():
             horizons=_parse_horizons(getattr(args, "horizons", None)))
     elif args.command == "pool-backtest-baseline":
         run_pool_backtest_baseline_cmd(
+            config, symbols=_cli_symbols(args))
+    elif args.command == "risk-alert":
+        run_risk_alert_cmd(
             config, symbols=_cli_symbols(args))
     elif args.command == "model-improve":
         _mh = None

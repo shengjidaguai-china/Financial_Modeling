@@ -2,6 +2,13 @@
 
 本文件按倒序记录项目的实质性进展——最新条目紧贴本行下方。每条保持简短——只写摘要与指针；结论沉淀到 `cairn/<topic>.md` 知识专题文档。
 
+## 2026-10-09 · S29 完成（波动/回撤预警项目）
+
+- 新建 `src/eval/risk_alert.py` + CLI `risk-alert` + 18 tests。
+- 朴素 trailing-vol 基线产品化：逐标的年化波动率 + 回撤监控 + 分位数预警等级（normal/elevated/high/extreme）。
+- 纯价格驱动，零新依赖，`affects_gate=false`，只读预警。Issue #55 结论：朴素基线 IC 0.69~0.75 已够用。
+- 落盘 `reports/risk_alert.json`。K 轮 S27/S28/S29 全部完成。
+
 ## 2026-10-08 · S28 完成（池级组合回测器全池口径）
 
 - 新建 `src/eval/pool_backtest_baseline.py` + CLI `pool-backtest-baseline` + 7 tests。

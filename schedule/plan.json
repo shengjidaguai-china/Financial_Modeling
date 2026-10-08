@@ -1937,7 +1937,7 @@
       "id": "S29",
       "round": "K3",
       "name": "波动/回撤预警项目（K3：朴素 trailing-vol 基线）",
-      "status": "pending",
+      "status": "completed",
       "scheduled_dates": "2026-11-10 ~ 2026-11-16",
       "source": "K 轮 · K3（ROADMAP 开放问题 #6：波动/回撤预警项目）",
       "depends_on": [
@@ -1953,24 +1953,32 @@
         {
           "id": "T29.1",
           "name": "朴素 trailing-vol 基线实现（零新依赖）：trailing window 波动率计算 + 预警阈值",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T16:20:45.199510+00:00",
+          "result": "risk_alert.py 实现 trailing-vol 年化波动率 + 回撤监控 + 分位数预警等级（normal/elevated/high/extreme）。零新依赖。"
         },
         {
           "id": "T29.2",
           "name": "全池波动预警读数 + 回撤监控：38 标的 trailing-vol IC + 最大回撤追踪",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T16:20:45.199510+00:00",
+          "result": "build_report 全池逐标的预警读数 + 等级分布聚合 + top_alerts 排序。38 标的覆盖。"
         },
         {
           "id": "T29.3",
           "name": "预警报告 + CLI 入口（python main.py risk-alert），输出 reports/risk_alert.json",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T16:20:45.199510+00:00",
+          "result": "CLI risk-alert 入口 + reports/risk_alert.json 落盘 + 18 个守卫测试全绿。"
         }
       ],
       "affects_gate": false,
-      "note": "K 轮 K3：Issue #55 关闭后的风险预警落地。朴素 trailing-vol 基线 IC 0.69~0.75 已够用，不必为模型输出立项。affects_gate=false，只读预警。"
+      "note": "K 轮 K3：Issue #55 关闭后的风险预警落地。朴素 trailing-vol 基线 IC 0.69~0.75 已够用，不必为模型输出立项。affects_gate=false，只读预警。",
+      "completed_at": "2026-10-08T16:20:45.199510+00:00",
+      "result": "S29 全部任务完成。波动/回撤预警朴素 trailing-vol 基线产品化。18 个守卫测试全绿。affects_gate=false，只读预警。"
     }
   ],
   "next_run_date": "2026-09-12",
