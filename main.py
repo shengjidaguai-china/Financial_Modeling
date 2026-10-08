@@ -4574,7 +4574,7 @@ def build_parser() -> argparse.ArgumentParser:
         "portfolio-backtest", "drift-monitor", "feature-attribution",
         "decision-feed", "tv-export", "pool-collinearity", "model-improve",
         "regime-signal", "edge-check", "ablation", "risk-signal", "laya-decision",
-        "laya-replay", "laya-prereg",
+        "laya-replay", "laya-prereg", "feature-informativeness",
         "gate", "gate-diagnose", "factors", "factor-model",
         "stream", "intraday", "consistency", "risk-advice",
     ], help="执行命令")
@@ -4764,6 +4764,59 @@ def run_pool_collinearity_cmd(config: dict, symbols: list[str] | None = None,
     _record_trial(config, "pool-collinearity", {
         "available": bool(report.get("available")),
         "n_symbols": report.get("n_symbols_with_returns", 0),
+    })
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    return report
+
+
+def _parse_horizons(raw: str | None) -> list[int] | None:
+    """解析逗号分隔的周期字符串（如 '5,10,20'）。"""
+    if not raw:
+        return None
+    try:
+        return [int(x.strip()) for x in str(raw).split(",") if x.strip()]
+    except ValueError:
+        return None
+
+
+def run_feature_informativeness_cmd(config: dict, symbols: list[str] | None = None,
+                                    horizons: list[int] | None = None) -> dict:
+    """特征信息量审计（S27 / K1）：52 指标 MI/IC 排序 + 冗余诊断。
+
+    只产出证据，affects_gate=False：不删特征、不改门禁。
+    落盘 reports/feature_informativeness.json。
+    """
+    from src.data.preprocessor import FeatureEngineer
+    from src.eval.feature_informativeness import build_report
+
+    logger.info("执行特征信息量审计")
+    symbols = symbols or _config_symbols(config)
+    horizons = horizons or [5, 10, 20]
+    data = _load_price_frames(config, symbols)
+
+    fe = FeatureEngineer(config)
+
+    def transform_fn(df: pd.DataFrame, horizon: int) -> pd.DataFrame:
+        out = fe.transform(df)
+        return fe.create_target(out, horizon_days=horizon)
+
+    sample_df = next(iter(data.values()), None)
+    if sample_df is None:
+        logger.error("[feature-informativeness] 无行情数据")
+        return {"available": False, "reason": "无行情数据"}
+
+    sample_feat = transform_fn(sample_df.copy(), 5)
+    feature_cols = fe.get_feature_columns(sample_feat, horizon_days=5)
+
+    report = build_report(data, feature_cols, horizons=horizons, transform_fn=transform_fn)
+    out_dir = Path("reports")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / "feature_informativeness.json"
+    path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    report["report_path"] = str(path)
+    _record_trial(config, "feature-informativeness", {
+        "n_features": report.get("n_features", 0),
+        "n_symbols": len(report.get("symbols", [])),
     })
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return report
@@ -5327,6 +5380,10 @@ def main():
         run_pool_collinearity_cmd(
             config, symbols=_cli_symbols(args),
             high_corr=float(getattr(args, "high_corr", 0.7) or 0.7))
+    elif args.command == "feature-informativeness":
+        run_feature_informativeness_cmd(
+            config, symbols=_cli_symbols(args),
+            horizons=_parse_horizons(getattr(args, "horizons", None)))
     elif args.command == "model-improve":
         _mh = None
         _raw_mh = getattr(args, "horizons", None)
