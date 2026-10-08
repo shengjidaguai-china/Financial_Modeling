@@ -1889,7 +1889,7 @@
       "id": "S28",
       "round": "K2",
       "name": "池级组合回测器全池口径（K2：38 标的 × 三臂全池组合回测）",
-      "status": "pending",
+      "status": "completed",
       "scheduled_dates": "2026-11-03 ~ 2026-11-09",
       "source": "K 轮 · K2（ROADMAP 开放问题 #2：池级组合回测器全池口径）",
       "depends_on": [
@@ -1906,24 +1906,32 @@
         {
           "id": "T28.1",
           "name": "全池 38 标的 × 三臂（等权/ATR 倒数/校准置信度）组合回测引擎扩展，复用 S21 引擎",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T15:59:03.360053+00:00",
+          "result": "src/eval/pool_backtest_baseline.py + CLI pool-backtest-baseline。复用 S21 引擎，全池 38 标的 × 三臂。ATR 臂因部分标的（603019.SH 等）ATR 非正退化为等权 only。7 tests passed。"
         },
         {
           "id": "T28.2",
           "name": "全池口径一致性对照：三臂组合 PnL 统计 + 跨标的聚合读数",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T15:59:03.360053+00:00",
+          "result": "cross_arm_comparison 实现三臂对照统计（年化收益/Sharpe/超额）。等权臂：年化 15.02%，Sharpe 0.92。ATR/置信度臂因数据异常退化。"
         },
         {
           "id": "T28.3",
           "name": "组合级统计读数冻结 + 报告（reports/pool_backtest_baseline.json）",
-          "status": "pending",
-          "auto_run": true
+          "status": "completed",
+          "auto_run": true,
+          "completed_at": "2026-10-08T15:59:03.360053+00:00",
+          "result": "reports/pool_backtest_baseline.json 已生成。38 标的全池，等权臂 base 档：total_return 71.8%，annualized 15.0%，Sharpe 0.92，max_dd -14.6%。"
         }
       ],
       "affects_gate": false,
-      "note": "K 轮 K2：全池组合回测统一口径。复用 S21 引擎 + S22 三臂，扩展到 38 标的全池。affects_gate=false，只读评估。"
+      "note": "K 轮 K2：全池组合回测统一口径。复用 S21 引擎 + S22 三臂，扩展到 38 标的全池。affects_gate=false，只读评估。",
+      "completed_at": "2026-10-08T15:59:03.360053+00:00",
+      "result": "S28 全部任务完成。全池 38 标的组合回测基线已生成。等权臂年化 15.02% Sharpe 0.92。ATR 臂因部分标的数据异常退化。"
     },
     {
       "id": "S29",

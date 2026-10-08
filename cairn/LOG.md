@@ -2,6 +2,14 @@
 
 本文件按倒序记录项目的实质性进展——最新条目紧贴本行下方。每条保持简短——只写摘要与指针；结论沉淀到 `cairn/<topic>.md` 知识专题文档。
 
+## 2026-10-08 · S28 完成（池级组合回测器全池口径）
+
+- 新建 `src/eval/pool_backtest_baseline.py` + CLI `pool-backtest-baseline` + 7 tests。
+- 全池 38 标的 × 三臂（等权/ATR 倒数/置信度）× 三成本档。复用 S21 引擎，零引擎改动。
+- 等权臂（base 档）：年化 **15.02%**，Sharpe **0.92**，max_dd **-14.6%**。
+- ATR 倒数臂因部分标的（603019.SH 等）ATR 非正退化为等权 only——已知数据质量限制。
+- affects_gate=false。指针：`src/eval/pool_backtest_baseline.py`、`reports/pool_backtest_baseline.json`。
+
 ## 2026-10-08 · S27 完成（信号区分度排查 + 特征排除）
 
 - **T27.4 用户签字**：删除 35 个零信息/冗余特征（8 zero-info + 27 redundant pairs 低 MI 方），107 → 72 特征。

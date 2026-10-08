@@ -164,7 +164,13 @@ def build_report(
         report["reason"] = "无法构建信号 frame"
         return report
 
-    arms = _build_all_arms(price_frames, signal_frames, atr_window=atr_window)
+    arms = {}
+    try:
+        arms = _build_all_arms(price_frames, signal_frames, atr_window=atr_window)
+    except ValueError as e:
+        logger.warning(f"[pool-backtest-baseline] 三臂构建失败（{e}），退化为等权")
+        equal_plans = build_equal_weight_plan(signal_frames)
+        arms = {"equal": (equal_plans, "equal_active")}
 
     arms_results: Dict[str, Dict[str, Any]] = {}
     for arm_name, (plans, normalize) in arms.items():
